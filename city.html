@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery in Ho Chi Minh City - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                    <span>Mr. Lexx</span>
+                </a>
+            </div>
+            <nav class="main-nav" id="main-nav">
+                <div class="header-location-simple">
+                     <i class="fas fa-map-marker-alt"></i>
+                    <span>Ho Chi Minh City</span>
+                </div>
+                <a href="#" class="nav-link">Log in</a>
+                <a href="#" class="btn btn-primary">Sign up for free delivery</a>
+                <div class="language-switcher">
+                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
+                    <ul class="language-dropdown">
+                        <li><a href="#" data-lang="EN">English</a></li>
+                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- City Hero Section -->
+        <section class="city-hero">
+            <div class="container">
+                <h1>Mr. Lexx Food Delivery in<br><strong>Ho Chi Minh City</strong></h1>
+            </div>
+            <img src="images/hochiminh.jpg" alt="Mr. Lexx Mascot" class="city-hero-mascot">
+        </section>
+
+        <div class="container page-content">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="index.html">Homepage</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Ho Chi Minh City</span>
+            </nav>
+
+            <!-- All Restaurants Section -->
+            <section class="all-restaurants-section">
+                <h2>All restaurants</h2>
+                <div class="restaurant-grid">
+                    <!-- Restaurant Card 1 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/banhxeo.jpg" alt="Banh Xeo">
+                            <span class="discount-tag">20% OFF</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Bánh Xèo 46A</h3>
+                            <p class="card-cuisine">$$ · Rice Dishes</p>
+                            <span class="rating"><i class="fas fa-star"></i> 4.7 (1k+)</span>
+                        </div>
+                    </div>
+                    <!-- Restaurant Card 2 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/trasua.jpg" alt="The Alley">
+                        </div>
+                        <div class="card-content">
+                            <h3>The Alley</h3>
+                            <p class="card-cuisine">$$ · Bubble Tea</p>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9 (5k+)</span>
+                        </div>
+                    </div>
+                    <!-- Restaurant Card 3 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/grilled.jpg" alt="Secret Garden">
+                             <span class="new-tag">New</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Secret Garden Restaurant</h3>
+                            <p class="card-cuisine">$$$ · Grill</p>
+                            <span class="rating"><i class="fas fa-star"></i> 4.6 (500+)</span>
+                        </div>
+                    </div>
+                    <!-- Restaurant Card 4 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/noodles2.jpg" alt="Bun Cha">
+                            <span class="discount-tag">10% OFF</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Bún Chả 145 Bùi Viện</h3>
+                            <p class="card-cuisine">$$ · Noodles</p>
+                            <span class="rating"><i class="fas fa-star"></i> 4.8 (2k+)</span>
+                        </div>
+                    </div>
+                    <!-- Add more cards as needed -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="about.html" class="footer-text-link" data-lang-key="aboutUsLink">About Us</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phở Thìn 13 Lò Đúc Menu - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                    <span>Mr. Lexx</span>
+                </a>
+                <div class="location-display">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Le Loi, District 1, Ho Chi Minh City</span>
+                </div>
+            </div>
+            <nav class="main-nav" id="main-nav">
+                <a href="#" class="nav-link">Log in</a>
+                <a href="#" class="btn btn-primary">Sign up for free delivery</a>
+                <div class="language-switcher">
+                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
+                    <ul class="language-dropdown">
+                        <li><a href="#" data-lang="EN">English</a></li>
+                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container page-content">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs">
+                <a href="city.html">Ho Chi Minh City</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="search.html">Restaurant List</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Phở Thìn 13 Lò Đúc</span>
+            </nav>
+
+            <!-- Restaurant Header -->
+            <header class="menu-header">
+                <img src="images/pho.jpg" alt="Restaurant Logo" class="restaurant-logo-img">
+                <div class="restaurant-info">
+                    <h1>Phở Thìn 13 Lò Đúc</h1>
+                    <p>Noodles</p>
+                    <div class="info-line">
+                        <span><i class="fas fa-star"></i> 4.8 (500+)</span>
+                        <span><i class="fas fa-motorcycle"></i> ₫15,000 delivery</span>
+                        <span><i class="fas fa-wallet"></i> Min. order ₫50,000</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Available Deals -->
+            <section class="available-deals">
+                <div class="deal-item">
+                    <i class="fas fa-percent"></i>
+                    <div>
+                        <strong>15% off</strong>
+                        <p>Min. order ₫100,000. Auto applied.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu Navigation -->
+            <nav class="menu-nav">
+                <a href="#pho" class="active">Phở (3)</a>
+                <a href="#extras">Món Thêm (4)</a>
+                <a href="#drinks">Đồ uống (2)</a>
+            </nav>
+
+            <!-- Menu Category: Pho -->
+            <section id="pho" class="menu-category-section">
+                <h2>Phở</h2>
+                <div class="menu-item-list">
+                    <div class="menu-item">
+                        <div class="item-details">
+                            <h3>Phở Tái Nạm</h3>
+                            <p>Classic beef noodle soup with flank and eye round steak.</p>
+                            <p class="price">₫65,000</p>
+                        </div>
+                        <div class="item-image">
+                            <img src="images/pho.jpg" alt="Pho Tai Nam">
+                            <button class="add-item-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-details">
+                            <h3>Phở Tái Lăn</h3>
+                            <p>Stir-fried beef with garlic in noodle soup.</p>
+                            <p class="price">₫70,000</p>
+                        </div>
+                        <div class="item-image">
+                            <img src="images/pho2.jpg" alt="Pho Tai Lan">
+                            <button class="add-item-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu Category: Extras -->
+            <section id="extras" class="menu-category-section">
+                <h2>Món Thêm</h2>
+                <div class="menu-item-list">
+                    <div class="menu-item">
+                        <div class="item-details">
+                            <h3>Quẩy (Fried Dough)</h3>
+                            <p>Crispy fried dough sticks, perfect for dipping in soup.</p>
+                            <p class="price">₫10,000</p>
+                        </div>
+                        <div class="item-image">
+                            <img src="images/quay.jpg" alt="Quay">
+                            <button class="add-item-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-details">
+                            <h3>Trứng Trần (Poached Egg)</h3>
+                            <p>A poached egg to enrich your bowl of pho.</p>
+                            <p class="price">₫10,000</p>
+                        </div>
+                        <div class="item-image">
+                            <img src="images/egg.jpg" alt="Quay">
+                            <button class="add-item-btn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Item Modal -->
+    <div class="item-modal-overlay" id="item-modal-overlay">
+        <div class="item-modal-dialog">
+            <button class="modal-close-btn" id="modal-close-btn">×</button>
+            <div class="modal-content-wrapper">
+                <div class="modal-image-header">
+                     <img src="images/pho.jpg" alt="Item Image">
+                </div>
+                <div class="modal-item-info">
+                    <h3>Phở Tái Nạm</h3>
+                    <p class="price">₫65,000</p>
+                    <p class="description">Classic beef noodle soup with flank and eye round steak.</p>
+                </div>
+                <div class="modal-section">
+                    <h4>Frequently bought together</h4>
+                    <div class="frequent-item">
+                        <label><input type="checkbox"> Quẩy (Fried Dough)</label>
+                        <span>+ ₫10,000</span>
+                    </div>
+                    <div class="frequent-item">
+                        <label><input type="checkbox"> Trứng Trần (Poached Egg)</label>
+                        <span>+ ₫10,000</span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4>Special instructions</h4>
+                    <textarea placeholder="e.g. No onions"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="quantity-selector">
+                    <button id="decrease-quantity">-</button>
+                    <span id="item-quantity">1</span>
+                    <button id="increase-quantity">+</button>
+                </div>
+                <button class="btn btn-primary add-to-cart-btn">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="about.html" class="footer-text-link" data-lang-key="aboutUsLink">About Us</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

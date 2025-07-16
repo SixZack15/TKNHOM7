@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="images/Icon.png" alt="Mr. Lexx Logo"><span>Mr. Lexx</span></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-wrapper">
+        <div class="checkout-container">
+            <!-- Main Checkout Area -->
+            <div class="checkout-main">
+                <h2 class="checkout-page-title" data-lang-key="checkoutPageTitle">Checkout</h2>
+                
+                <div class="checkout-section">
+                    <h3 data-lang-key="deliveryTitle">Delivery address</h3>
+                    <div class="address-box">
+                        <p><strong>123 Le Loi, District 1, Ho Chi Minh City</strong></p>
+                        <p>+84 123 456 789</p>
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h3 data-lang-key="paymentTitle">Payment method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option active" data-payment-method="cash">
+                            <input type="radio" name="payment" value="cash" checked>
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span data-lang-key="paymentCash">Cash on delivery</span>
+                        </label>
+                         <label class="payment-option" data-payment-method="card">
+                            <input type="radio" name="payment" value="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span data-lang-key="paymentCard">Credit/Debit Card</span>
+                        </label>
+                    </div>
+                    <!-- Card Details Form (hidden by default) -->
+                    <div class="card-details-form" id="card-details-form">
+                        <div class="form-group">
+                            <label for="card-number" data-lang-key="cardNumber">Card Number</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="card-form-row">
+                            <div class="form-group">
+                                <label for="expiry-date" data-lang-key="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvc" data-lang-key="cvc">CVC</label>
+                                <input type="text" id="cvc" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <aside class="order-summary">
+                <h3 data-lang-key="orderSummaryTitle">Order Summary</h3>
+                <div class="cart-item-readonly">
+                    <span>1 x</span>
+                    <p>Phở Tái Nạm</p>
+                    <span>₫65,000</span>
+                </div>
+                <div class="summary-details">
+                    <div class="summary-line">
+                        <span data-lang-key="subtotal">Subtotal</span>
+                        <span>₫65,000</span>
+                    </div>
+                    <div class="summary-line">
+                        <span data-lang-key="deliveryFee">Delivery fee</span>
+                        <span>₫15,000</span>
+                    </div>
+                    <div class="summary-line total-line">
+                        <span data-lang-key="total">Total</span>
+                        <span class="total-price">₫80,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary checkout-btn" id="place-order-btn" data-lang-key="placeOrderBtn">Place Order</button>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

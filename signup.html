@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="login.html" class="nav-link" data-lang-key="login">Log in</a>
+                <div class="language-switcher">
+                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
+                    <ul class="language-dropdown">
+                        <li><a href="#" data-lang="EN">English</a></li>
+                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Main Auth Content -->
+    <main class="auth-container">
+        <div class="auth-form-box">
+            <h2 class="auth-title" data-lang-key="signupTitle">Create an account</h2>
+            <form id="signup-form">
+                 <div class="form-group">
+                    <label for="fullname" data-lang-key="fullNameLabel">Full Name</label>
+                    <input type="text" id="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-lang-key="emailLabel">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" data-lang-key="passwordLabel">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn" data-lang-key="signupBtn">Sign up</button>
+            </form>
+            <div class="divider-or" data-lang-key="orDivider">or</div>
+            <div class="social-login">
+                <button class="social-login-btn google">
+                    <i class="fab fa-google"></i> <span data-lang-key="loginWithGoogle">Continue with Google</span>
+                </button>
+                <button class="social-login-btn facebook">
+                    <i class="fab fa-facebook-f"></i> <span data-lang-key="loginWithFacebook">Continue with Facebook</span>
+                </button>
+            </div>
+            <p class="auth-switch-link">
+                <span data-lang-key="hasAccount">Already have an account?</span>
+                <a href="login.html" data-lang-key="logInLink">Log in</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="about.html" class="footer-text-link" data-lang-key="aboutUsLink">About Us</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants in Ho Chi Minh City - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-left">
+                <a href="#" class="logo">
+                    <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                    <span>Mr. Lexx</span>
+                </a>
+                <div class="location-display">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Le Loi, District 1, Ho Chi Minh City</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link" data-lang-key="login">Log in</a>
+                <a href="#" class="btn btn-primary" data-lang-key="signup">Sign up for free delivery</a>
+                <div class="language-switcher">
+                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
+                    <ul class="language-dropdown">
+                        <li><a href="#" data-lang="EN">English</a></li>
+                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <!-- Filter Sidebar (Desktop) -->
+        <aside class="filters-sidebar" id="filters-sidebar">
+            <h3>Filters</h3>
+            <!-- Filter Groups will be injected by JS -->
+        </aside>
+
+        <!-- Restaurant Listings -->
+        <main class="content-area">
+            <div class="search-and-filter-bar">
+                <div class="main-search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for restaurants, cuisines, and dishes">
+                </div>
+                <button class="filters-button-mobile" id="open-filters-modal-btn">
+                    <i class="fas fa-sliders-h"></i> Filters
+                </button>
+            </div>
+
+            <!-- Promo Banner -->
+            <div class="promo-banner">
+                <div class="promo-text">
+                    <h4>Sign up for free delivery on your first order</h4>
+                    <button class="btn btn-primary">Sign up</button>
+                </div>
+            </div>
+
+            <!-- Your Favourite Cuisines -->
+            <section class="restaurant-section">
+                <h2 class="section-title">Your Favourite Cuisines</h2>
+                <div class="cuisine-bubbles-container">
+                    <div class="cuisine-bubble"><img src="images/rice.jpg" alt="Rice Dishes"><span>Rice Dishes</span></div>
+                    <div class="cuisine-bubble"><img src="images/noodles.jpg" alt="Noodles"><span>Noodles</span></div>
+                    <div class="cuisine-bubble"><img src="images/chicken.jpg" alt="Fried Chicken"><span>Fried Chicken</span></div>
+                    <div class="cuisine-bubble"><img src="images/trasua.jpg" alt="Bubble Tea"><span>Bubble Tea</span></div>
+                    <div class="cuisine-bubble"><img src="images/grilled.jpg" alt="Grill"><span>Grill</span></div>
+                    <div class="cuisine-bubble"><img src="images/tomyum.jpg" alt="Tom Yum"><span>Tom Yum</span></div>
+                    <div class="cuisine-bubble"><img src="images/coffee.jpg" alt="Coffee & Tea"><span>Coffee & Tea</span></div>
+                </div>
+            </section>
+            
+            <!-- All Restaurants -->
+            <section class="restaurant-section">
+                <h2 class="section-title">All Restaurants</h2>
+                <div class="restaurant-grid">
+                    <!-- Restaurant Card Example 1 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/pho.jpg" alt="Pho Thin">
+                            <span class="discount-tag">15% OFF</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title-line">
+                                <h3>Phở Thìn 13 Lò Đúc</h3>
+                                <span class="rating"><i class="fas fa-star"></i> 4.8 (500+)</span>
+                            </div>
+                            <p class="card-cuisine">$$ · Noodles</p>
+                            <div class="card-info">
+                                <span><i class="fas fa-clock"></i> 25-35 min</span>
+                                <span><i class="fas fa-tag"></i> ₫55,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Restaurant Card Example 2 -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/suon.jpg" alt="Com Tam">
+                             <span class="ad-tag">Ad</span>
+                        </div>
+                        <div class="card-content">
+                             <div class="card-title-line">
+                                <h3>Cơm Tấm Cali</h3>
+                                <span class="rating"><i class="fas fa-star"></i> 4.7 (1k+)</span>
+                            </div>
+                            <p class="card-cuisine">$$$ · Rice Dishes</p>
+                            <div class="card-info">
+                                <span><i class="fas fa-clock"></i> 20-30 min</span>
+                                <span><i class="fas fa-tag"></i> ₫80,000</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- More cards can be added here -->
+                    <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/chicken.jpg" alt="Fried Chicken">
+                            <span class="discount-tag">25% OFF</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title-line">
+                                <h3>Popeyes - Gà Rán</h3>
+                                <span class="rating"><i class="fas fa-star"></i> 4.6 (800+)</span>
+                            </div>
+                            <p class="card-cuisine">$$ · Fried Chicken</p>
+                            <div class="card-info">
+                                <span><i class="fas fa-clock"></i> 15-25 min</span>
+                                <span><i class="fas fa-tag"></i> ₫99,000</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="restaurant-card">
+                        <div class="card-image">
+                            <img src="images/smoothie.jpg" alt="Bubble Tea">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title-line">
+                                <h3>Gong Cha</h3>
+                                <span class="rating"><i class="fas fa-star"></i> 4.9 (2k+)</span>
+                            </div>
+                            <p class="card-cuisine">$$ · Bubble Tea</p>
+                            <div class="card-info">
+                                <span><i class="fas fa-clock"></i> 10-20 min</span>
+                                <span><i class="fas fa-tag"></i> ₫50,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Filter Modal (Mobile) -->
+    <div class="filter-modal" id="filter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Filters</h3>
+                <button class="close-modal-btn" id="close-filters-modal-btn">×</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Filter Groups will be injected by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="clear-filters-btn">Clear all</button>
+                <button class="btn btn-primary" id="apply-filters-btn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="about.html" class="footer-text-link" data-lang-key="aboutUsLink">About Us</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="login.html" class="nav-link" data-lang-key="login">Log in</a>
+                <a href="signup.html" class="btn btn-primary" data-lang-key="signup">Sign up</a>
+                <div class="language-switcher">
+                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
+                    <ul class="language-dropdown">
+                        <li><a href="#" data-lang="EN">English</a></li>
+                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                    </ul>
+                </div>
+                <a href="cart-empty.html" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+            </nav>
+            <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <h1 data-lang-key="aboutTitle">Connecting Vietnam, One Meal at a Time</h1>
+                <p class="hero-subtitle" data-lang-key="aboutSubtitle">Learn more about our mission to bring the best local flavors right to your doorstep.</p>
+            </div>
+        </section>
+
+        <!-- About Content Section -->
+        <div class="container page-content about-page-content">
+            <div class="about-section">
+                <h2 data-lang-key="storyTitle">Our Story</h2>
+                <p data-lang-key="storyText">Founded in the heart of Ho Chi Minh City, Mr. Lexx began with a simple idea: to make the incredible diversity of Vietnamese cuisine accessible to everyone. From the bustling street food stalls to the hidden culinary gems, we saw an opportunity to connect passionate local chefs with hungry customers. We are more than just a delivery app; we are a celebration of food, culture, and community.</p>
+            </div>
+
+            <div class="about-section">
+                <h2 data-lang-key="missionTitle">Our Mission</h2>
+                <p data-lang-key="missionText">Our mission is to empower local restaurants and provide our customers with a fast, reliable, and delightful food delivery experience. We are committed to using technology to bridge gaps, support small businesses, and deliver happiness in every order.</p>
+            </div>
+
+            <!-- Our Values Section -->
+            <div class="about-section">
+                <h2 data-lang-key="valuesTitle">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <i class="fas fa-utensils"></i>
+                        <h3 data-lang-key="valueQuality">Quality First</h3>
+                        <p data-lang-key="valueQualityText">We partner with the best restaurants to ensure every meal is delicious and authentic.</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3 data-lang-key="valueSpeed">Speed & Reliability</h3>
+                        <p data-lang-key="valueSpeedText">Our advanced logistics network ensures your food arrives hot and on time.</p>
+                    </div>
+                    <div class="value-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3 data-lang-key="valueCommunity">Community Support</h3>
+                        <p data-lang-key="valueCommunityText">We are dedicated to helping our local restaurant partners thrive and grow.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2 data-lang-key="ctaTitle">Join the Mr. Lexx Family</h2>
+                <p data-lang-key="ctaText">Are you a restaurant owner or a driver? Partner with us to reach more customers and grow your business.</p>
+                <a href="#" class="btn btn-primary" data-lang-key="ctaBtn">Become a Partner</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
