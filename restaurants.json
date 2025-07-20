@@ -25,17 +25,17 @@
                 "Phở Bò": [
                     { "id": 101, "name": "Phở Tái Nạm", "description": "Classic beef noodle soup with flank and eye round steak.", "price": 65000, "image": "images/pho.jpg", "recommended_sides": [105, 106] },
                     { "id": 102, "name": "Phở Tái Lăn", "description": "Stir-fried beef with garlic in noodle soup.", "price": 70000, "image": "images/pho2.jpg" },
-                    { "id": 103, "name": "Phở Chín", "description": "Noodle soup with well-done brisket.", "price": 65000, "image": null },
-                    { "id": 104, "name": "Phở Đặc Biệt", "description": "Special combo with all beef cuts.", "price": 85000, "image": "images/pho.jpg", "recommended_sides": [105, 106] }
+                    { "id": 103, "name": "Phở Chín", "description": "Noodle soup with well-done brisket.", "price": 65000, "image": "images/pho-chin.jpg" },
+                    { "id": 104, "name": "Phở Đặc Biệt", "description": "Special combo with all beef cuts.", "price": 85000, "image": "images/pho-dac-biet.jpg", "recommended_sides": [105, 106] }
                 ],
                 "Món Thêm (Side Dishes)": [
                     { "id": 105, "name": "Quẩy (Fried Dough)", "description": "Crispy fried dough sticks, perfect for dipping in soup.", "price": 10000, "image": "images/quay.jpg" },
                     { "id": 106, "name": "Trứng Trần (Poached Egg)", "description": "A poached egg to enrich your bowl of pho.", "price": 10000, "image": "images/egg.jpg" }
                 ],
                 "Đồ uống (Drinks)": [
-                    { "id": 107, "name": "Trà Đá", "description": "Iced tea.", "price": 5000, "image": null },
-                    { "id": 108, "name": "Coca-Cola", "description": "Classic Coca-Cola.", "price": 15000, "image": null },
-                    { "id": 109, "name": "Nước Suối", "description": "Mineral water.", "price": 10000, "image": null }
+                    { "id": 107, "name": "Trà Đá", "description": "Iced tea.", "price": 5000, "image": "images/tra-da.jpg" },
+                    { "id": 108, "name": "Coca-Cola", "description": "Classic Coca-Cola.", "price": 15000, "image": "images/coca-cola.jpg" },
+                    { "id": 109, "name": "Nước Suối", "description": "Mineral water.", "price": 10000, "image": "images/nuoc-suoi.jpg" }
                 ]
             }
         },
@@ -112,12 +112,12 @@
             "menu": {
                 "Cơm Tấm": [
                     { "id": 601, "name": "Cơm Tấm Sườn Nướng", "description": "Broken rice with grilled pork chop.", "price": 55000, "image": "images/suon.jpg" },
-                    { "id": 602, "name": "Cơm Tấm Sườn Bì Chả", "description": "Broken rice with pork chop, shredded pork skin, and meatloaf.", "price": 68000, "image": "images/suon.jpg"},
-                    { "id": 603, "name": "Cơm Tấm Gà Nướng", "description": "Broken rice with grilled chicken.", "price": 52000, "image": null }
+                    { "id": 602, "name": "Cơm Tấm Sườn Bì Chả", "description": "Broken rice with pork chop, shredded pork skin, and meatloaf.", "price": 68000, "image": "images/suon-bi-cha-xiu-mai.png"},
+                    { "id": 603, "name": "Cơm Tấm Gà Nướng", "description": "Broken rice with grilled chicken.", "price": 52000, "image": "images/com-tam-ga-nuong.jpeg" }
                 ],
                 "Đồ uống": [
-                    { "id": 604, "name": "Canh Rong Biển", "description": "Seaweed soup.", "price": 15000, "image": null },
-                    { "id": 605, "name": "Nước Sâm", "description": "Herbal tea.", "price": 12000, "image": null }
+                    { "id": 604, "name": "Canh Rong Biển", "description": "Seaweed soup.", "price": 15000, "image": "images/canh-rong-bien.jpg" },
+                    { "id": 605, "name": "Nước Sâm", "description": "Herbal tea.", "price": 12000, "image": "images/nuoc-sam.jpg" }
                 ]
             }
         },
@@ -208,10 +208,10 @@
             "menu": {
                 "Pizza": [
                     { "id": 1201, "name": "Margherita Pizza", "description": "Classic pizza with tomato sauce, mozzarella, and basil.", "price": 180000, "image": "images/pizza.jpg" },
-                    { "id": 1202, "name": "Burrata Prosciutto Pizza", "description": "House-made burrata with parma ham.", "price": 260000, "image": null }
+                    { "id": 1202, "name": "Burrata Prosciutto Pizza", "description": "House-made burrata with parma ham.", "price": 260000, "image": "images/burrata-prosciutto-pizza.jpg" }
                 ],
                 "Pasta": [
-                    { "id": 1203, "name": "Crab Tomato Cream Spaghetti", "description": "Spaghetti with a rich crab and tomato cream sauce.", "price": 220000, "image": null }
+                    { "id": 1203, "name": "Crab Tomato Cream Spaghetti", "description": "Spaghetti with a rich crab and tomato cream sauce.", "price": 220000, "image": "images/crab-tomato-cream-spaghetti.jpg" }
                 ]
             }
         },
@@ -273,11 +273,11 @@
             "menu": {
                 "Cà Phê": [
                     { "id": 1601, "name": "Cà Phê Sữa Đá", "description": "Vietnamese iced coffee with condensed milk.", "price": 35000, "image": "images/coffee.jpg" },
-                    { "id": 1602, "name": "Americano", "description": "Espresso shots topped with hot water.", "price": 45000, "image": null }
+                    { "id": 1602, "name": "Americano", "description": "Espresso shots topped with hot water.", "price": 45000, "image": "images/americano.jpg" }
                 ],
                 "Trà & Bánh": [
-                    { "id": 1603, "name": "Trà Đào Cam Sả", "description": "Peach tea with orange and lemongrass.", "price": 50000, "image": null },
-                    { "id": 1604, "name": "Bánh Mì Chà Bông", "description": "Pork floss bread.", "price": 25000, "image": null }
+                    { "id": 1603, "name": "Trà Đào Cam Sả", "description": "Peach tea with orange and lemongrass.", "price": 50000, "image": "images/tra-dao-cam-sa.jpg" },
+                    { "id": 1604, "name": "Bánh Mì Chà Bông", "description": "Pork floss bread.", "price": 25000, "image": "images/banh-mi-cha-bong.jpg" }
                 ]
             }
         },
