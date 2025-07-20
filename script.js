@@ -49,6 +49,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (page === 'index.html' || page === '' || page === 'index') {
             displayDailyDeals();
+            // Add event listener for the "Locate Me" button
+            const locateMeBtn = document.getElementById('locate-me-btn');
+            if (locateMeBtn) {
+                locateMeBtn.addEventListener('click', () => {
+                    const addressInput = document.getElementById('address-input');
+                    if (addressInput) {
+                        addressInput.value = "123 Le Loi, District 1, Ho Chi Minh City";
+                    }
+                });
+            }
         } else if (page === 'search.html' || page === 'search') {
             initSearchPage(urlParams);
         } else if (page === 'city.html' || page === 'city') {
