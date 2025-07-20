@@ -23,10 +23,10 @@
             ],
             "menu": {
                 "Phở Bò": [
-                    { "id": 101, "name": "Phở Tái Nạm", "description": "Classic beef noodle soup with flank and eye round steak.", "price": 65000, "image": "images/pho.jpg" },
+                    { "id": 101, "name": "Phở Tái Nạm", "description": "Classic beef noodle soup with flank and eye round steak.", "price": 65000, "image": "images/pho.jpg", "recommended_sides": [105, 106] },
                     { "id": 102, "name": "Phở Tái Lăn", "description": "Stir-fried beef with garlic in noodle soup.", "price": 70000, "image": "images/pho2.jpg" },
                     { "id": 103, "name": "Phở Chín", "description": "Noodle soup with well-done brisket.", "price": 65000, "image": null },
-                    { "id": 104, "name": "Phở Đặc Biệt", "description": "Special combo with all beef cuts.", "price": 85000, "image": "images/pho.jpg" }
+                    { "id": 104, "name": "Phở Đặc Biệt", "description": "Special combo with all beef cuts.", "price": 85000, "image": "images/pho.jpg", "recommended_sides": [105, 106] }
                 ],
                 "Món Thêm (Side Dishes)": [
                     { "id": 105, "name": "Quẩy (Fried Dough)", "description": "Crispy fried dough sticks, perfect for dipping in soup.", "price": 10000, "image": "images/quay.jpg" },

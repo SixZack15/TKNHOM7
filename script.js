@@ -92,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateHeaderUI() {
         const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
         const navs = document.querySelectorAll('.main-nav');
+        const page = window.location.pathname.split("/").pop(); // Get current page filename
+
         navs.forEach(nav => {
             nav.querySelectorAll('.auth-dynamic').forEach(el => el.remove());
             const languageSwitcher = nav.querySelector('.language-switcher');
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const referenceNode = languageSwitcher || cartIcon;
 
             if (loggedInUser) {
+                // This part remains the same for logged-in users
                 const welcomeSpan = document.createElement('span');
                 welcomeSpan.className = 'nav-link auth-dynamic';
                 welcomeSpan.textContent = `${translations.welcome || 'Welcome'}, ${loggedInUser.fullName.split(' ')[0]}`;
@@ -110,18 +113,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.insertBefore(welcomeSpan, referenceNode);
                 nav.insertBefore(logoutLink, referenceNode);
             } else {
-                const loginLink = document.createElement('a');
-                loginLink.href = 'login.html';
-                loginLink.className = 'nav-link auth-dynamic';
-                loginLink.setAttribute('data-lang-key', 'login');
-                loginLink.textContent = translations.login || 'Log in';
-                const signupLink = document.createElement('a');
-                signupLink.href = 'signup.html';
-                signupLink.className = 'btn btn-primary auth-dynamic';
-                signupLink.setAttribute('data-lang-key', 'signup');
-                signupLink.textContent = translations.signup || 'Sign up';
-                nav.insertBefore(loginLink, referenceNode);
-                nav.insertBefore(signupLink, referenceNode);
+                // --- MODIFIED PART FOR LOGGED-OUT USERS ---
+                // Only show the "Log in" link if not on login.html
+                if (page !== 'login.html' && page !== 'login') {
+                    const loginLink = document.createElement('a');
+                    loginLink.href = 'login.html';
+                    loginLink.className = 'nav-link auth-dynamic';
+                    loginLink.setAttribute('data-lang-key', 'login');
+                    loginLink.textContent = translations.login || 'Log in';
+                    nav.insertBefore(loginLink, referenceNode);
+                }
+
+                // Only show the "Sign up" button if not on signup.html
+                if (page !== 'signup.html' && page !== 'signup') {
+                    const signupLink = document.createElement('a');
+                    signupLink.href = 'signup.html';
+                    signupLink.className = 'btn btn-primary auth-dynamic';
+                    signupLink.setAttribute('data-lang-key', 'signup');
+                    signupLink.textContent = translations.signup || 'Sign up';
+                    nav.insertBefore(signupLink, referenceNode);
+                }
             }
         });
         const currentLangText = document.getElementById('current-lang-text');
@@ -367,22 +378,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function addToCart(newItem) {
+    function addToCart(newItem, quantity = 1) {
         // Check if cart is from a different restaurant
         if (cart.length > 0 && cart[0].restaurantId !== newItem.restaurantId) {
-            if (!confirm(translations.alertNewCart || "You have items from another restaurant. Clear the cart and add this new item?")) {
-                return;
+            if (!confirm(translations.alertNewCart || "You can only order from one restaurant at a time. Starting a new cart will clear your current one.")) {
+                return false; // Return false if user cancels
             }
             cart = []; // Clear the cart if user confirms
         }
 
         const existingItem = cart.find(item => item.id === newItem.id);
         if (existingItem) {
-            existingItem.quantity += newItem.quantity;
+            existingItem.quantity += quantity;
         } else {
-            cart.push(newItem);
+            // Add the new item with its quantity
+            cart.push({ ...newItem, quantity: quantity });
         }
-        saveCart();
+        return true; // Return true on success
     }
 
     function updateCartQuantity(itemId, change) {
@@ -416,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'order-confirmation.html';
     }
 
-    // --- MODAL LOGIC ---
+    // --- REFACTORED MODAL LOGIC ---
     function openItemModal(itemId, restaurantId) {
         const restaurant = allRestaurants.find(r => r.id === restaurantId);
         let selectedItem = null;
@@ -434,6 +446,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalContent = document.getElementById('modal-content-wrapper');
         const modalFooter = document.getElementById('modal-footer');
 
+        // --- Start of new logic for "Frequently bought together" ---
+        let fbtHTML = '';
+        if (selectedItem.recommended_sides && selectedItem.recommended_sides.length > 0) {
+            const allMenuItems = Object.values(restaurant.menu).flat();
+            const recommendedItems = selectedItem.recommended_sides
+                .map(sideId => allMenuItems.find(item => item.id === sideId))
+                .filter(item => item); // Filter out any not found items
+
+            if (recommendedItems.length > 0) {
+                fbtHTML = `
+                <div class="modal-section">
+                    <h4>Frequently bought together</h4>
+                    <div id="fbt-items-container">
+                    ${recommendedItems.map(item => `
+                        <div class="fbt-item">
+                            <label>
+                                <input type="checkbox" class="fbt-checkbox" data-item-id="${item.id}">
+                                <span>${item.name}</span>
+                            </label>
+                            <span class="fbt-price">+ ₫${item.price.toLocaleString('de-DE')}</span>
+                        </div>
+                    `).join('')}
+                    </div>
+                </div>`;
+            }
+        }
+        // --- End of new logic ---
+
+        // Build the modal HTML with the new sections
         modalContent.innerHTML = `
             ${selectedItem.image ? `<div class="modal-image-header"><img src="${selectedItem.image}" alt="${selectedItem.name}"></div>` : ''}
             <div class="modal-item-info">
@@ -441,9 +482,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="price">₫${selectedItem.price.toLocaleString('de-DE')}</p>
                 ${selectedItem.description ? `<p class="description">${selectedItem.description}</p>` : ''}
             </div>
+            ${fbtHTML} 
             <div class="modal-section">
-                <h4 data-lang-key="specialInstructions"></h4>
-                <textarea data-lang-key-placeholder="specialInstructionsPlaceholder"></textarea>
+                <h4 data-lang-key="specialInstructions">Special instructions</h4>
+                <textarea id="special-instructions-input" data-lang-key-placeholder="specialInstructionsPlaceholder" placeholder="e.g. No onions, less spicy"></textarea>
             </div>`;
         
         modalFooter.innerHTML = `
@@ -452,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span id="item-quantity">1</span>
                 <button id="increase-quantity">+</button>
             </div>
-            <button class="btn btn-primary add-to-cart-btn" data-lang-key="addToCartBtn"></button>`;
+            <button class="btn btn-primary add-to-cart-btn" data-lang-key="addToCartBtn">Add to cart</button>`;
         
         applyTranslations();
         modal.classList.add('show');
@@ -470,14 +512,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 quantityEl.textContent = quantity;
             }
         };
+        
+        // --- Updated "Add to cart" button logic ---
         document.querySelector('.add-to-cart-btn').onclick = () => {
-            addToCart({
+            // Add the main item first
+            const success = addToCart({
                 id: selectedItem.id,
                 name: selectedItem.name,
                 price: selectedItem.price,
-                quantity: quantity,
-                restaurantId: restaurant.id
+                restaurantId: restaurant.id,
+            }, quantity);
+
+            // If user cancelled clearing the cart, stop here
+            if (!success) return; 
+
+            // Add checked "frequently bought together" items
+            document.querySelectorAll('.fbt-checkbox:checked').forEach(checkbox => {
+                const sideItemId = parseInt(checkbox.dataset.itemId);
+                const allMenuItems = Object.values(restaurant.menu).flat();
+                const sideItem = allMenuItems.find(item => item.id === sideItemId);
+                if (sideItem) {
+                    // Add each side item with a quantity of 1
+                    addToCart({
+                         id: sideItem.id,
+                         name: sideItem.name,
+                         price: sideItem.price,
+                         restaurantId: restaurant.id,
+                    }, 1); 
+                }
             });
+
+            // Save all new items to the cart at once and close the modal
+            saveCart();
             modal.classList.remove('show');
         };
     }
@@ -686,8 +752,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return matchesSearch && matchesPrice && matchesCuisine;
         });
 
-        // Hide/show cuisine bubbles
-        document.getElementById('cuisine-section').style.display = selectedCuisines.length > 0 ? 'none' : 'block';
+        // --- MODIFIED LINE ---
+        // Hide/show cuisine bubbles using visibility to preserve layout space and prevent shrinking/shifting.
+        document.getElementById('cuisine-section').style.visibility = selectedCuisines.length > 0 ? 'hidden' : 'visible';
 
         renderRestaurants(filtered);
     }
