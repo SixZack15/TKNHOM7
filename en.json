@@ -41,7 +41,7 @@
     "alertFillFields": "Please fill in all fields.",
     "alertInvalidLogin": "Invalid email or password.",
     "alertEnterEmailPass": "Please enter both email and password.",
-    "alertNewCart": "You can only order from one restaurant at a time. Starting a new cart.",
+    "alertNewCart": "You can only order from one restaurant at a time. Starting a new cart will clear your current one.",
     "filtersTitle": "Filters",
     "searchPlaceholder": "Search for restaurants, cuisines, and dishes",
     "favCuisinesTitle": "Your Favourite Cuisines",
@@ -75,6 +75,10 @@
     "cvc": "CVC",
     "placeOrderBtn": "Place Order",
     "confirmTitle": "Order Confirmed!",
+    "confirmSubtitleText": "Your order from",
+    "confirmOnItsWay": "is on its way.",
     "confirmETA": "Estimated delivery time:",
-    "confirmBtn": "Back to Homepage"
+    "confirmBtn": "Back to Homepage",
+    "frequentlyBoughtTogether": "Frequently bought together",
+    "availableDeals": "Available Deals"
 }

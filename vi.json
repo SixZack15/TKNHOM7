@@ -41,7 +41,7 @@
     "alertFillFields": "Vui lòng điền vào tất cả các trường.",
     "alertInvalidLogin": "Email hoặc mật khẩu không hợp lệ.",
     "alertEnterEmailPass": "Vui lòng nhập cả email và mật khẩu.",
-    "alertNewCart": "Bạn chỉ có thể đặt hàng từ một nhà hàng tại một thời điểm. Bắt đầu một giỏ hàng mới.",
+    "alertNewCart": "Bạn chỉ có thể đặt hàng từ một nhà hàng tại một thời điểm. Bắt đầu một giỏ hàng mới sẽ xoá giỏ hàng hiện tại.",
     "filtersTitle": "Bộ lọc",
     "searchPlaceholder": "Tìm nhà hàng, món ăn, ẩm thực",
     "favCuisinesTitle": "Ẩm thực yêu thích của bạn",
@@ -75,6 +75,10 @@
     "cvc": "CVC",
     "placeOrderBtn": "Đặt hàng",
     "confirmTitle": "Xác nhận đơn hàng!",
+    "confirmSubtitleText": "Đơn hàng của bạn từ",
+    "confirmOnItsWay": "đang được giao đến.",
     "confirmETA": "Thời gian giao hàng dự kiến:",
-    "confirmBtn": "Quay về trang chủ"
+    "confirmBtn": "Quay về trang chủ",
+    "frequentlyBoughtTogether": "Thường được mua cùng",
+    "availableDeals": "Ưu đãi có sẵn"
 }
