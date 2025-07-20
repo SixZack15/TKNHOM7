@@ -47,19 +47,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateCartBadge(); // <-- ADD THIS LINE to update the badge on every page
 
-        if (page === 'index.html' || page === '') {
+        if (page === 'index.html' || page === '' || page === 'index') {
             displayDailyDeals();
-        } else if (page === 'search.html') {
+        } else if (page === 'search.html' || page === 'search') {
             initSearchPage(urlParams);
-        } else if (page === 'city.html') {
+        } else if (page === 'city.html' || page === 'city') {
             initCityPage(urlParams);
-        } else if (page === 'menu.html') {
+        } else if (page === 'menu.html' || page === 'menu') {
             initMenuPage(urlParams);
-        } else if (page === 'cart.html') { // <-- ADD THIS BLOCK
+        } else if (page === 'cart.html' || page === 'cart') { // <-- ADD THIS BLOCK
             initCartPage();
-        } else if (page === 'checkout.html') { // <-- ADD THIS BLOCK
+        } else if (page === 'checkout.html' || page === 'checkout') { // <-- ADD THIS BLOCK
             initCheckoutPage();
-        } else if (page === 'order-confirmation.html') { // <-- ADD THIS BLOCK
+        } else if (page === 'order-confirmation.html' || page === 'order-confirmation') { // <-- ADD THIS BLOCK
             initOrderConfirmationPage();
         }
     }
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem('cart', JSON.stringify(cart));
         updateCartBadge();
         // If on cart page, re-render to show changes
-        if (window.location.pathname.endsWith('cart.html')) {
+        if (window.location.pathname.endsWith('cart.html') || window.location.pathname.endsWith('cart')) {
             if (cart.length === 0) {
                 window.location.reload();
             } else {
