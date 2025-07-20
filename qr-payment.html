@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Payment - Mr. Lexx</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><img src="images/Icon.png" alt="Mr. Lexx Logo"><span>Mr. Lexx</span></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-wrapper">
+        <div class="qr-payment-container">
+            <h2 class="auth-title" data-lang-key="qrPageTitle">Scan QR to Pay</h2>
+            <p class="instruction-text" data-lang-key="qrInstruction">
+                Please use your banking app to scan the QR code below. Ensure the transfer description is correct.
+            </p>
+
+            <div class="qr-code-box">
+                <img id="qr-code-image" src="" alt="Vietcombank QR Code">
+            </div>
+
+            <div class="timer">
+                <span data-lang-key="qrTimeLeft">Time left:</span>
+                <strong id="countdown-timer">05:00</strong>
+            </div>
+
+            <div class="transfer-details">
+                <div class="detail-item">
+                    <span data-lang-key="qrAmount">Amount</span>
+                    <strong id="qr-amount">---</strong>
+                </div>
+                <div class="detail-item">
+                    <span data-lang-key="qrTransferDesc">Transfer Description</span>
+                    <strong id="qr-reference">---</strong>
+                </div>
+            </div>
+
+            <div class="qr-button-group">
+                <button class="btn btn-secondary" id="cancel-order-btn" data-lang-key="qrCancelBtn">
+                    Cancel Order
+                </button>
+                <button class="btn btn-primary" id="confirm-transaction-btn" data-lang-key="qrConfirmBtn">
+                    I have completed the transaction
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo">
+                <img src="images/Icon.png" alt="Mr. Lexx Logo">
+                <span>Mr. Lexx</span>
+            </a>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

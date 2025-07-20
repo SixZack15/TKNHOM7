@@ -25,14 +25,40 @@
             <div class="checkout-main">
                 <h2 class="checkout-page-title" data-lang-key="checkoutPageTitle">Checkout</h2>
                 
-                <div class="checkout-section">
-                    <h3 data-lang-key="deliveryTitle">Delivery address</h3>
-                    <div class="address-box">
-                        <p><strong>123 Le Loi, District 1, Ho Chi Minh City</strong></p>
-                        <p>+84 123 456 789</p>
+                <!-- Delivery Address Section -->
+                <div class="checkout-section" id="delivery-address-section">
+                    <div class="checkout-section-header">
+                        <h3 data-lang-key="deliveryTitle">Delivery address</h3>
+                        <button class="btn-change" id="change-address-btn" style="display: none;">Change</button>
+                    </div>
+                    <!-- View for saved address -->
+                    <div id="saved-address-view" style="display: none;">
+                        <div class="address-box">
+                            <p><strong id="saved-address-name"></strong></p>
+                            <p id="saved-address-details"></p>
+                            <p id="saved-address-phone"></p>
+                        </div>
+                    </div>
+                    <!-- Form for new address -->
+                    <div id="address-form-view">
+                        <form id="address-form">
+                            <div class="form-group">
+                                <label for="fullname" data-lang-key="fullNameLabel">Full Name</label>
+                                <input type="text" id="fullname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Street Address</label>
+                                <input type="text" id="address" required>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
+                <!-- Payment Method Section -->
                 <div class="checkout-section">
                     <h3 data-lang-key="paymentTitle">Payment method</h3>
                     <div class="payment-options">
@@ -46,21 +72,41 @@
                             <i class="fas fa-credit-card"></i>
                             <span data-lang-key="paymentCard">Credit/Debit Card</span>
                         </label>
+                        <label class="payment-option" id="qr-option">
+                            <input type="radio" name="payment" value="qr">
+                            <i class="fas fa-qrcode"></i>
+                            <span>Bank Transfer (QR)</span>
+                        </label>
                     </div>
-                    <!-- Card Details Form (hidden by default) -->
-                    <div class="card-details-form" id="card-details-form">
-                        <div class="form-group">
-                            <label for="card-number" data-lang-key="cardNumber">Card Number</label>
-                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                    
+                    <!-- Card Details Section -->
+                    <div class="payment-details-form" id="card-details-section" style="display: none;">
+                         <div class="checkout-section-header">
+                            <h4>Card Details</h4>
+                            <button class="btn-change" id="change-card-btn" style="display: none;">Change</button>
                         </div>
-                        <div class="card-form-row">
-                            <div class="form-group">
-                                <label for="expiry-date" data-lang-key="expiryDate">Expiry Date</label>
-                                <input type="text" id="expiry-date" placeholder="MM/YY">
+                        <!-- View for saved card -->
+                        <div id="saved-card-view" style="display: none;">
+                            <div class="address-box">
+                                <p><strong id="saved-card-number"></strong></p>
+                                <p id="saved-card-expiry"></p>
                             </div>
+                        </div>
+                        <!-- Form for new card -->
+                        <div id="card-form-view">
                             <div class="form-group">
-                                <label for="cvc" data-lang-key="cvc">CVC</label>
-                                <input type="text" id="cvc" placeholder="123">
+                                <label for="card-number" data-lang-key="cardNumber">Card Number</label>
+                                <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                            </div>
+                            <div class="card-form-row">
+                                <div class="form-group">
+                                    <label for="expiry-date" data-lang-key="expiryDate">Expiry Date</label>
+                                    <input type="text" id="expiry-date" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvc" data-lang-key="cvc">CVC</label>
+                                    <input type="text" id="cvc" placeholder="123">
+                                </div>
                             </div>
                         </div>
                     </div>

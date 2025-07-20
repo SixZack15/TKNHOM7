@@ -25,6 +25,36 @@
             <h2 data-lang-key="confirmTitle">Order Confirmed!</h2>
             <p id="confirmation-subtitle"></p>
             <p class="eta-text" id="confirmation-eta"></p>
+
+            <!-- Order Details Box -->
+            <div class="confirmation-details-box">
+                <h3 id="confirmation-restaurant-name"></h3>
+
+                <div id="confirmation-items-list">
+                    <!-- Itemized list will be injected here by JS -->
+                </div>
+                <hr>
+                
+                <div class="confirmation-detail-item">
+                    <span>Order Date:</span>
+                    <strong id="confirmation-date"></strong>
+                </div>
+                <div class="confirmation-detail-item">
+                    <span>Deliver To:</span>
+                    <strong id="confirmation-name"></strong>
+                </div>
+                <p id="confirmation-address"></p>
+                <hr>
+                <div class="confirmation-detail-item">
+                    <span>Payment Method:</span>
+                    <strong id="confirmation-payment"></strong>
+                </div>
+                <div class="confirmation-detail-item total">
+                    <span>Total Paid:</span>
+                    <strong id="confirmation-total"></strong>
+                </div>
+            </div>
+
             <a href="index.html" class="btn btn-primary" data-lang-key="confirmBtn">Back to Homepage</a>
         </div>
     </main>

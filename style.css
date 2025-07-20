@@ -323,3 +323,325 @@ main {
     .modal-footer { flex-direction: column; gap: 15px; align-items: stretch; }
     .add-to-cart-btn { margin-left: 0; }
 }
+
+/* --- CHECKOUT PAGE REFINEMENTS --- */
+.checkout-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkout-section-header h3, .checkout-section-header h4 {
+    margin-bottom: 0;
+}
+
+.btn-change {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.payment-details-form {
+    display: none; /* Hidden by default */
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray-color);
+}
+
+/* --- ORDER CONFIRMATION PAGE REFINEMENTS --- */
+.order-confirmation-container .btn {
+    margin-top: 30px;
+}
+
+.confirmation-details-box {
+    background-color: #F9FAFB;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.confirmation-details-box h3 {
+    font-size: 18px;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.confirmation-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.confirmation-details-box p {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.confirmation-details-box hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 15px 0;
+}
+
+.confirmation-detail-item.total {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-top: 15px;
+}
+
+/* --- STYLES FOR SPECIAL INSTRUCTIONS --- */
+
+/* For cart.html */
+.cart-item {
+    align-items: flex-start; /* Align items to the top */
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-instructions {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+    /* Indent to align with item name, accounting for quantity controls */
+    padding-left: 90px; 
+}
+
+/* For checkout.html summary */
+.cart-item-readonly .cart-item-instructions {
+    font-size: 14px;
+    color: #555;
+    margin-top: 2px;
+    padding-left: 25px; /* Indent to align with item name */
+}
+
+/* For order-confirmation.html */
+#confirmation-items-list {
+    margin-bottom: 15px;
+}
+
+.confirmation-item {
+    margin-bottom: 10px;
+}
+
+.confirmation-item .item-line {
+    font-weight: 500;
+    margin: 0;
+}
+.confirmation-item .item-line span {
+    font-weight: 400;
+    margin-right: 5px;
+}
+
+.confirmation-item .item-instructions {
+    font-size: 14px;
+    color: #555;
+    padding-left: 25px; /* Indent slightly */
+    margin: 2px 0 0 0;
+}
+
+/* --- QR PAYMENT PAGE STYLES --- */
+.qr-payment-container {
+    max-width: 480px;
+    margin: 40px auto;
+    background-color: var(--white-color);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.instruction-text {
+    color: var(--text-color);
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.qr-code-box {
+    margin-bottom: 20px;
+}
+
+.qr-code-box img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.timer {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.timer strong {
+    color: var(--primary-color);
+    margin-left: 8px;
+}
+
+.transfer-details {
+    background-color: #F9FAFB;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.transfer-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+.transfer-details .detail-item:first-child {
+    margin-bottom: 15px;
+}
+
+.transfer-details .detail-item span {
+    color: var(--text-color);
+}
+
+.transfer-details .detail-item strong {
+    color: var(--dark-color);
+    font-size: 18px;
+}
+
+/* Add this to the end of your style.css file */
+.qr-button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.qr-button-group .btn {
+    flex: 1; /* Make buttons take equal width */
+    margin-bottom: 0; /* Override default button margin if any */
+}
+
+/* --- ABOUT US PAGE STYLES --- */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hanoi.jpg') no-repeat center center/cover;
+    color: var(--white-color);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.about-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.about-hero .hero-subtitle {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.about-page-content {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.about-section {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 32px;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.value-item {
+    text-align: center;
+}
+
+.value-item i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.value-item h3 {
+    font-size: 20px;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.cta-section {
+    background-color: #F9FAFB;
+    border-radius: 12px;
+    padding: 50px 30px;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 32px;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    color: var(--text-color);
+    max-width: 600px;
+    margin: 0 auto 30px auto; /* This line is the key fix */
+    line-height: 1.6;
+}
+
+.cta-section .btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 16px;
+}
+
+/* Responsive adjustments for About Page */
+@media (max-width: 992px) {
+    .about-hero h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .about-hero h1 {
+        font-size: 32px;
+    }
+    .about-section h2 {
+        font-size: 28px;
+    }
+}

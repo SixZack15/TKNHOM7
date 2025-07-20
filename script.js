@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let allRestaurants = [];
     let translations = {};
     let currentLang = localStorage.getItem('language') || 'en';
-    let cart = JSON.parse(sessionStorage.getItem('cart')) || []; // <-- ADD THIS LINE
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 
     // --- INITIALIZATION ---
     async function initializeApp() {
@@ -17,13 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(`${lang}.json`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             translations = await response.json();
-            currentLang = lang; // Set current language
-            localStorage.setItem('language', lang); // Save it
+            currentLang = lang;
+            localStorage.setItem('language', lang);
             applyTranslations();
         } catch (error) {
             console.error("Could not load translations:", error);
             if (lang !== 'en') {
-                // If translation fails, try falling back to English
                 await loadTranslations('en');
             }
         }
@@ -45,11 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const page = window.location.pathname.split("/").pop();
         const urlParams = new URLSearchParams(window.location.search);
 
-        updateCartBadge(); // <-- ADD THIS LINE to update the badge on every page
+        updateCartBadge(); 
 
         if (page === 'index.html' || page === '' || page === 'index') {
             displayDailyDeals();
-            // Add event listener for the "Locate Me" button
             const locateMeBtn = document.getElementById('locate-me-btn');
             if (locateMeBtn) {
                 locateMeBtn.addEventListener('click', () => {
@@ -65,11 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
             initCityPage(urlParams);
         } else if (page === 'menu.html' || page === 'menu') {
             initMenuPage(urlParams);
-        } else if (page === 'cart.html' || page === 'cart') { // <-- ADD THIS BLOCK
+        } else if (page === 'cart.html' || page === 'cart') {
             initCartPage();
-        } else if (page === 'checkout.html' || page === 'checkout') { // <-- ADD THIS BLOCK
+        } else if (page === 'checkout.html' || page === 'checkout') {
             initCheckoutPage();
-        } else if (page === 'order-confirmation.html' || page === 'order-confirmation') { // <-- ADD THIS BLOCK
+        } else if (page === 'qr-payment.html' || page === 'qr-payment') { // <-- ADD THIS BLOCK
+            initQrPaymentPage();
+        } else if (page === 'order-confirmation.html' || page === 'order-confirmation') {
             initOrderConfirmationPage();
         }
     }
@@ -86,13 +86,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (translations[key]) el.placeholder = translations[key];
         });
         updateHeaderUI();
-        updateHeroUI(); // Call this again in case it's the index page
+        updateHeroUI();
     }
 
     function updateHeaderUI() {
         const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
         const navs = document.querySelectorAll('.main-nav');
-        const page = window.location.pathname.split("/").pop(); // Get current page filename
+        const page = window.location.pathname.split("/").pop();
 
         navs.forEach(nav => {
             nav.querySelectorAll('.auth-dynamic').forEach(el => el.remove());
@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const referenceNode = languageSwitcher || cartIcon;
 
             if (loggedInUser) {
-                // This part remains the same for logged-in users
                 const welcomeSpan = document.createElement('span');
                 welcomeSpan.className = 'nav-link auth-dynamic';
                 welcomeSpan.textContent = `${translations.welcome || 'Welcome'}, ${loggedInUser.fullName.split(' ')[0]}`;
@@ -113,8 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.insertBefore(welcomeSpan, referenceNode);
                 nav.insertBefore(logoutLink, referenceNode);
             } else {
-                // --- MODIFIED PART FOR LOGGED-OUT USERS ---
-                // Only show the "Log in" link if not on login.html
                 if (page !== 'login.html' && page !== 'login') {
                     const loginLink = document.createElement('a');
                     loginLink.href = 'login.html';
@@ -123,8 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     loginLink.textContent = translations.login || 'Log in';
                     nav.insertBefore(loginLink, referenceNode);
                 }
-
-                // Only show the "Sign up" button if not on signup.html
                 if (page !== 'signup.html' && page !== 'signup') {
                     const signupLink = document.createElement('a');
                     signupLink.href = 'signup.html';
@@ -167,9 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('header-address').textContent = address || 'All Locations';
         populateFilters();
         populateCuisineBubbles();
-        renderRestaurants(allRestaurants); // Initial render
+        renderRestaurants(allRestaurants);
         
-        // Add event listeners for filters
         document.getElementById('filters-sidebar').addEventListener('change', handleFilterChange);
         document.getElementById('search-input-main').addEventListener('input', handleFilterChange);
     }
@@ -178,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const city = params.get('city');
         document.title = `${translations.deliveryIn || "Food Delivery in"} ${city} - Mr. Lexx`;
         
-        const cityHeroTitle = document.getElementById('city-hero-title');
         const cityNameEl = document.getElementById('city-name');
         if (cityNameEl) cityNameEl.textContent = city;
         
@@ -191,9 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const cityRestaurants = allRestaurants.filter(r => r.city === city);
-        const grid = document.getElementById('city-restaurant-grid');
-        renderRestaurants(cityRestaurants, grid);
-        applyTranslations(); // Re-apply for dynamic content
+        renderRestaurants(cityRestaurants, document.getElementById('city-restaurant-grid'));
+        applyTranslations();
     }
 
     function initMenuPage(params) {
@@ -261,7 +253,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function displayRestaurantMenu(restaurant) {
-        // Breadcrumbs
         const breadcrumbs = document.getElementById('breadcrumbs');
         if (breadcrumbs) {
             breadcrumbs.innerHTML = `
@@ -272,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span>${restaurant.name}</span>`;
         }
     
-        // Header
         const menuHeader = document.getElementById('menu-header');
         if (menuHeader) {
             menuHeader.innerHTML = `
@@ -288,11 +278,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>`;
         }
     
-        // Deals
         const dealsSection = document.getElementById('available-deals');
         if (dealsSection && restaurant.deals && restaurant.deals.length > 0) {
             dealsSection.style.display = 'block';
-            dealsSection.innerHTML = restaurant.deals.map(deal => `
+            dealsSection.innerHTML = `<h3 data-lang-key="availableDeals"></h3>` + restaurant.deals.map(deal => `
                 <div class="deal-item">
                     <i class="fas fa-percent"></i>
                     <div>
@@ -304,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dealsSection.style.display = 'none';
         }
     
-        // Menu Navigation and Items
         const menuNav = document.getElementById('menu-nav');
         const menuContainer = document.getElementById('menu-items-container');
         if (menuNav && menuContainer && restaurant.menu) {
@@ -312,14 +300,12 @@ document.addEventListener('DOMContentLoaded', function() {
             menuContainer.innerHTML = '';
             Object.keys(restaurant.menu).forEach((category, index) => {
                 const categoryId = `category-${category.replace(/\s+/g, '-')}`;
-                // Nav link
                 const navLink = document.createElement('a');
                 navLink.href = `#${categoryId}`;
                 navLink.textContent = `${category} (${restaurant.menu[category].length})`;
                 if(index === 0) navLink.classList.add('active');
                 menuNav.appendChild(navLink);
     
-                // Section
                 const categorySection = document.createElement('section');
                 categorySection.id = categoryId;
                 categorySection.className = 'menu-category-section';
@@ -346,9 +332,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- CART, CHECKOUT, & ORDER LOGIC ---
-
     function updateCartBadge() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cart.forEach(item => {
+            if (typeof item.quantity !== 'number' || isNaN(item.quantity)) {
+                console.error('Invalid quantity found in cart item:', item);
+                item.quantity = 1; // Correcting invalid data
+            }
+        });
         const cartIcons = document.querySelectorAll('.cart-icon');
         cartIcons.forEach(cartIcon => {
             let badge = cartIcon.querySelector('.cart-badge');
@@ -368,7 +359,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveCart() {
         sessionStorage.setItem('cart', JSON.stringify(cart));
         updateCartBadge();
-        // If on cart page, re-render to show changes
         if (window.location.pathname.endsWith('cart.html') || window.location.pathname.endsWith('cart')) {
             if (cart.length === 0) {
                 window.location.reload();
@@ -378,27 +368,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function addToCart(newItem, quantity = 1) {
+    function addToCart(newItem, quantity = 1, instructions = '') {
         // Check if cart is from a different restaurant
         if (cart.length > 0 && cart[0].restaurantId !== newItem.restaurantId) {
             if (!confirm(translations.alertNewCart || "You can only order from one restaurant at a time. Starting a new cart will clear your current one.")) {
-                return false; // Return false if user cancels
+                return false; // User cancelled
             }
-            cart = []; // Clear the cart if user confirms
+            cart = []; // Clear the cart
         }
 
-        const existingItem = cart.find(item => item.id === newItem.id);
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            // Add the new item with its quantity
-            cart.push({ ...newItem, quantity: quantity });
+        // If there are no instructions, try to find an existing item to increment quantity
+        if (instructions === '') {
+            const existingItem = cart.find(item => item.id === newItem.id && !item.instructions);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+                return true; // Item updated
+            }
         }
-        return true; // Return true on success
+
+        // Add as a new, unique item if it has instructions or doesn't exist yet
+        // We use Date.now() to create a unique ID for this specific cart entry
+        cart.push({
+            ...newItem,
+            quantity: quantity,
+            instructions: instructions,
+            cartItemId: Date.now() // Unique ID for this specific entry in the cart
+        });
+        return true; // Item added
     }
 
-    function updateCartQuantity(itemId, change) {
-        const itemIndex = cart.findIndex(i => i.id === itemId);
+    function updateCartQuantity(cartItemId, change) {
+        const itemIndex = cart.findIndex(i => i.cartItemId === cartItemId);
         if (itemIndex > -1) {
             cart[itemIndex].quantity += change;
             if (cart[itemIndex].quantity <= 0) {
@@ -408,31 +408,158 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function removeFromCart(itemId) {
-        cart = cart.filter(i => i.id !== itemId);
+    function removeFromCart(cartItemId) {
+        cart = cart.filter(i => i.cartItemId !== cartItemId);
         saveCart();
     }
 
-    function placeOrder() {
-        const lastOrder = {
-            restaurantId: cart[0].restaurantId,
-            items: cart,
-            total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
-        };
-        sessionStorage.setItem('lastOrder', JSON.stringify(lastOrder));
+    // Add this new function to script.js
+    function initQrPaymentPage() {
+        const pendingOrder = JSON.parse(sessionStorage.getItem('pendingOrder'));
+        if (!pendingOrder) {
+            window.location.href = 'cart.html';
+            return;
+        }
+
+        // --- Populate Page Details ---
+        const totalAmount = pendingOrder.total;
+        const qrReference = pendingOrder.qrReference;
         
-        // Clear the cart
-        cart = [];
-        sessionStorage.removeItem('cart');
+        // Using VietQR API for a dynamic QR code
+        // Replace with your actual bank info if needed
+        const bankId = "970436"; // Vietcombank's BIN
+        const accountNumber = "999988887777"; // Your account number
+        const qrImageUrl = `https://img.vietqr.io/image/${bankId}-${accountNumber}-print.png?amount=${totalAmount}&addInfo=${qrReference}&accountName=MR%20LEXX%20STORE`;
         
-        window.location.href = 'order-confirmation.html';
+        document.getElementById('qr-code-image').src = qrImageUrl;
+        document.getElementById('qr-amount').textContent = `₫${totalAmount.toLocaleString('de-DE')}`;
+        document.getElementById('qr-reference').textContent = qrReference;
+        
+        // --- Countdown Timer Logic ---
+        let duration = 5 * 60; // 5 minutes in seconds
+        const timerDisplay = document.getElementById('countdown-timer');
+        const interval = setInterval(() => {
+            const minutes = Math.floor(duration / 60);
+            const seconds = duration % 60;
+            
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (--duration < 0) {
+                clearInterval(interval);
+                alert(translations.qrExpiredText || "The payment time has expired. Please create a new order.");
+                sessionStorage.removeItem('pendingOrder');
+                window.location.href = 'cart.html';
+            }
+        }, 1000);
+
+        // --- Confirm Button Logic ---
+        document.getElementById('confirm-transaction-btn').addEventListener('click', () => {
+            clearInterval(interval); // Stop the timer
+            // Move the pending order to lastOrder for the confirmation page
+            sessionStorage.setItem('lastOrder', JSON.stringify(pendingOrder));
+            sessionStorage.removeItem('pendingOrder');
+            window.location.href = 'order-confirmation.html';
+        });
+        
+        // --- NEW: CANCEL BUTTON LOGIC ---
+        // Add this entire block
+        document.getElementById('cancel-order-btn').addEventListener('click', () => {
+            clearInterval(interval); // Stop the timer immediately
+            
+            // Remove the order data that was waiting for payment
+            sessionStorage.removeItem('pendingOrder');
+            
+            // Inform the user and redirect
+            alert("Your order has been cancelled.");
+            window.location.href = 'index.html'; // Redirect to the homepage
+        });
+        
+        applyTranslations();
     }
 
-    // --- REFACTORED MODAL LOGIC ---
+    function placeOrder() {
+        // --- Validation Section (remains the same) ---
+        if (document.getElementById('address-form-view').style.display !== 'none') {
+            if (!document.getElementById('fullname').value || !document.getElementById('phone').value || !document.getElementById('address').value) {
+                alert(translations.alertFillFields || 'Please fill in all delivery address fields.');
+                return;
+            }
+        }
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+        if (paymentMethod === 'card' && document.getElementById('card-form-view').style.display !== 'none') {
+            if (!document.getElementById('card-number').value || !document.getElementById('expiry-date').value || !document.getElementById('cvc').value) {
+                alert(translations.alertFillFields || 'Please fill in all credit card details.');
+                return;
+            }
+        }
+        
+        // --- Data Gathering & Routing Logic ---
+        const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+        let deliveryAddress = {};
+        if (document.getElementById('address-form-view').style.display !== 'none') {
+            deliveryAddress = {
+                fullName: document.getElementById('fullname').value,
+                phone: document.getElementById('phone').value,
+                street: document.getElementById('address').value
+            };
+        } else {
+            deliveryAddress = JSON.parse(localStorage.getItem(`userInfo_${loggedInUser.email}`)).deliveryAddress;
+        }
+
+        const restaurant = allRestaurants.find(r => r.id === cart[0].restaurantId);
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + (restaurant.delivery_fee || 0);
+
+        // This is the base order object
+        const orderObject = {
+            restaurantId: cart[0].restaurantId,
+            items: cart,
+            total: total,
+            orderDate: new Date().toLocaleString('en-GB'),
+            deliveryAddress: deliveryAddress,
+            paymentInfo: { method: paymentMethod }
+        };
+
+        // --- ROUTING BASED ON PAYMENT METHOD ---
+        if (paymentMethod === 'qr') {
+            // For QR, create a pending order and redirect to the QR page
+            orderObject.qrReference = 'MRLEXX' + Date.now(); // Generate unique reference
+            sessionStorage.setItem('pendingOrder', JSON.stringify(orderObject));
+            cart = [];
+            sessionStorage.removeItem('cart');
+            window.location.href = 'qr-payment.html';
+
+        } else {
+            // For Cash or Card, proceed to confirmation directly
+            if (paymentMethod === 'card') {
+                let cardDetails = {};
+                if (document.getElementById('card-form-view').style.display !== 'none') {
+                    const cardNumber = document.getElementById('card-number').value;
+                    cardDetails = { cardNumber: `**** **** **** ${cardNumber.slice(-4)}`, expiryDate: document.getElementById('expiry-date').value };
+                } else {
+                    cardDetails = JSON.parse(localStorage.getItem(`userInfo_${loggedInUser.email}`)).paymentCard;
+                }
+                orderObject.paymentInfo.details = cardDetails;
+            }
+            
+            // Save user info
+            if (loggedInUser) {
+                const userInfo = JSON.parse(localStorage.getItem(`userInfo_${loggedInUser.email}`)) || {};
+                userInfo.deliveryAddress = deliveryAddress;
+                if (paymentMethod === 'card') { userInfo.paymentCard = orderObject.paymentInfo.details; }
+                localStorage.setItem(`userInfo_${loggedInUser.email}`, JSON.stringify(userInfo));
+            }
+
+            sessionStorage.setItem('lastOrder', JSON.stringify(orderObject));
+            cart = [];
+            sessionStorage.removeItem('cart');
+            window.location.href = 'order-confirmation.html';
+        }
+    }
+
+    // --- MODAL LOGIC ---
     function openItemModal(itemId, restaurantId) {
         const restaurant = allRestaurants.find(r => r.id === restaurantId);
         let selectedItem = null;
-        // Find the item across all categories in the menu
         for (const category in restaurant.menu) {
             const found = restaurant.menu[category].find(item => item.id === itemId);
             if (found) {
@@ -446,18 +573,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalContent = document.getElementById('modal-content-wrapper');
         const modalFooter = document.getElementById('modal-footer');
 
-        // --- Start of new logic for "Frequently bought together" ---
         let fbtHTML = '';
         if (selectedItem.recommended_sides && selectedItem.recommended_sides.length > 0) {
             const allMenuItems = Object.values(restaurant.menu).flat();
             const recommendedItems = selectedItem.recommended_sides
                 .map(sideId => allMenuItems.find(item => item.id === sideId))
-                .filter(item => item); // Filter out any not found items
+                .filter(item => item);
 
             if (recommendedItems.length > 0) {
                 fbtHTML = `
                 <div class="modal-section">
-                    <h4>Frequently bought together</h4>
+                    <h4 data-lang-key="frequentlyBoughtTogether"></h4>
                     <div id="fbt-items-container">
                     ${recommendedItems.map(item => `
                         <div class="fbt-item">
@@ -472,9 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>`;
             }
         }
-        // --- End of new logic ---
 
-        // Build the modal HTML with the new sections
         modalContent.innerHTML = `
             ${selectedItem.image ? `<div class="modal-image-header"><img src="${selectedItem.image}" alt="${selectedItem.name}"></div>` : ''}
             <div class="modal-item-info">
@@ -484,8 +608,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             ${fbtHTML} 
             <div class="modal-section">
-                <h4 data-lang-key="specialInstructions">Special instructions</h4>
-                <textarea id="special-instructions-input" data-lang-key-placeholder="specialInstructionsPlaceholder" placeholder="e.g. No onions, less spicy"></textarea>
+                <h4 data-lang-key="specialInstructions"></h4>
+                <textarea id="special-instructions-input" data-lang-key-placeholder="specialInstructionsPlaceholder"></textarea>
             </div>`;
         
         modalFooter.innerHTML = `
@@ -494,12 +618,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span id="item-quantity">1</span>
                 <button id="increase-quantity">+</button>
             </div>
-            <button class="btn btn-primary add-to-cart-btn" data-lang-key="addToCartBtn">Add to cart</button>`;
+            <button class="btn btn-primary add-to-cart-btn" data-lang-key="addToCartBtn"></button>`;
         
         applyTranslations();
         modal.classList.add('show');
         
-        // Modal event listeners
         let quantity = 1;
         const quantityEl = document.getElementById('item-quantity');
         document.getElementById('increase-quantity').onclick = () => {
@@ -515,30 +638,33 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // --- Updated "Add to cart" button logic ---
         document.querySelector('.add-to-cart-btn').onclick = () => {
-            // Add the main item first
+            // Get the special instructions from the textarea
+            const instructions = document.getElementById('special-instructions-input').value.trim();
+
+            // Add the main item first, passing the instructions
             const success = addToCart({
                 id: selectedItem.id,
                 name: selectedItem.name,
                 price: selectedItem.price,
                 restaurantId: restaurant.id,
-            }, quantity);
+            }, quantity, instructions);
 
             // If user cancelled clearing the cart, stop here
-            if (!success) return; 
+            if (!success) return;
 
-            // Add checked "frequently bought together" items
+            // Add checked "frequently bought together" items (without instructions)
             document.querySelectorAll('.fbt-checkbox:checked').forEach(checkbox => {
                 const sideItemId = parseInt(checkbox.dataset.itemId);
                 const allMenuItems = Object.values(restaurant.menu).flat();
                 const sideItem = allMenuItems.find(item => item.id === sideItemId);
                 if (sideItem) {
-                    // Add each side item with a quantity of 1
+                    // Add each side item with a quantity of 1 and no instructions
                     addToCart({
-                         id: sideItem.id,
-                         name: sideItem.name,
-                         price: sideItem.price,
-                         restaurantId: restaurant.id,
-                    }, 1); 
+                        id: sideItem.id,
+                        name: sideItem.name,
+                        price: sideItem.price,
+                        restaurantId: restaurant.id,
+                    }, 1, ''); // Pass empty string for instructions
                 }
             });
 
@@ -548,8 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // --- NEW PAGE INITIALIZERS ---
-
+    // --- PAGE INITIALIZERS ---
     function initCartPage() {
         const container = document.getElementById('cart-container');
         if (!container) return;
@@ -567,7 +692,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="checkout-container">
                     <aside class="order-summary full-width-cart" id="cart-summary">
                         <h3 data-lang-key="orderSummaryTitle"></h3>
-                        <!-- Cart items will be rendered here -->
                     </aside>
                 </div>`;
             renderCartItems();
@@ -581,20 +705,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const restaurant = allRestaurants.find(r => r.id === cart[0].restaurantId);
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
+
         summaryContainer.innerHTML = `
             <h3 data-lang-key="orderSummaryTitle"></h3>
             <p style="font-weight: 600; margin-bottom: 20px;">${restaurant.name}</p>
             <div id="cart-items-list">
                 ${cart.map(item => `
-                    <div class="cart-item" data-item-id="${item.id}">
-                        <div class="cart-item-info">
-                            <div class="cart-item-quantity-controls">
-                                <button class="quantity-btn decrease-btn">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn increase-btn">+</button>
+                    <div class="cart-item" data-cart-item-id="${item.cartItemId}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-info">
+                                <div class="cart-item-quantity-controls">
+                                    <button class="quantity-btn decrease-btn">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="quantity-btn increase-btn">+</button>
+                                </div>
+                                <p class="cart-item-name">${item.name}</p>
                             </div>
-                            <p class="cart-item-name">${item.name}</p>
+                            ${item.instructions ? `<p class="cart-item-instructions"><em>"${item.instructions}"</em></p>` : ''}
                         </div>
                         <div class="cart-item-price">
                             <span>₫${(item.price * item.quantity).toLocaleString('de-DE')}</span>
@@ -618,14 +745,15 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('cart-items-list').addEventListener('click', e => {
             const cartItem = e.target.closest('.cart-item');
             if (!cartItem) return;
-            const itemId = parseInt(cartItem.dataset.itemId);
-            if (e.target.classList.contains('increase-btn')) updateCartQuantity(itemId, 1);
-            if (e.target.classList.contains('decrease-btn')) updateCartQuantity(itemId, -1);
-            if (e.target.classList.contains('remove-item-btn')) removeFromCart(itemId);
+            const cartItemId = parseInt(cartItem.dataset.cartItemId); // Use the unique cartItemId
+            if (e.target.classList.contains('increase-btn')) updateCartQuantity(cartItemId, 1);
+            if (e.target.classList.contains('decrease-btn')) updateCartQuantity(cartItemId, -1);
+            if (e.target.classList.contains('remove-item-btn')) removeFromCart(cartItemId);
         });
         applyTranslations();
     }
 
+    // --- REFACTORED initCheckoutPage FUNCTION ---
     function initCheckoutPage() {
         if (cart.length === 0) {
             window.location.href = 'cart.html';
@@ -635,14 +763,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const deliveryFee = restaurant.delivery_fee || 0;
         const total = subtotal + deliveryFee;
-
+    
         const summaryContainer = document.getElementById('checkout-order-summary');
         summaryContainer.innerHTML = `
             <h3 data-lang-key="orderSummaryTitle"></h3>
             ${cart.map(item => `
                 <div class="cart-item-readonly">
-                    <span>${item.quantity} x</span>
-                    <p>${item.name}</p>
+                    <div class="cart-item-details">
+                        <p><span>${item.quantity} x</span> ${item.name}</p>
+                        ${item.instructions ? `<p class="cart-item-instructions"><em>"${item.instructions}"</em></p>` : ''}
+                    </div>
                     <span>₫${item.price.toLocaleString('de-DE')}</span>
                 </div>`).join('')}
             <div class="summary-details">
@@ -662,20 +792,108 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="btn btn-primary checkout-btn" id="place-order-btn" data-lang-key="placeOrderBtn"></button>`;
         
         document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+    
+        const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+        const userInfo = loggedInUser ? JSON.parse(localStorage.getItem(`userInfo_${loggedInUser.email}`)) : null;
+    
+        const savedAddressView = document.getElementById('saved-address-view');
+        const addressFormView = document.getElementById('address-form-view');
+        const changeAddressBtn = document.getElementById('change-address-btn');
+    
+        if (userInfo && userInfo.deliveryAddress) {
+            document.getElementById('saved-address-name').textContent = userInfo.deliveryAddress.fullName;
+            document.getElementById('saved-address-details').textContent = userInfo.deliveryAddress.street;
+            document.getElementById('saved-address-phone').textContent = userInfo.deliveryAddress.phone;
+            savedAddressView.style.display = 'block';
+            addressFormView.style.display = 'none';
+            changeAddressBtn.style.display = 'inline-block';
+        }
+    
+        changeAddressBtn.addEventListener('click', () => {
+            savedAddressView.style.display = 'none';
+            addressFormView.style.display = 'block';
+            changeAddressBtn.style.display = 'none';
+        });
+        
+        const cardDetailsSection = document.getElementById('card-details-section');
+        const savedCardView = document.getElementById('saved-card-view');
+        const cardFormView = document.getElementById('card-form-view');
+        const changeCardBtn = document.getElementById('change-card-btn');
+        
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.querySelectorAll('.payment-option').forEach(label => label.classList.remove('active'));
+                e.target.closest('.payment-option').classList.add('active');
+                
+                if (e.target.value === 'card') {
+                    cardDetailsSection.style.display = 'block';
+                     if (userInfo && userInfo.paymentCard) {
+                        document.getElementById('saved-card-number').textContent = userInfo.paymentCard.cardNumber;
+                        document.getElementById('saved-card-expiry').textContent = `Expires: ${userInfo.paymentCard.expiryDate}`;
+                        savedCardView.style.display = 'block';
+                        cardFormView.style.display = 'none';
+                        changeCardBtn.style.display = 'inline-block';
+                    } else {
+                        savedCardView.style.display = 'none';
+                        cardFormView.style.display = 'block';
+                        changeCardBtn.style.display = 'none';
+                    }
+                } else {
+                    cardDetailsSection.style.display = 'none';
+                }
+            });
+        });
+    
+        changeCardBtn.addEventListener('click', () => {
+            savedCardView.style.display = 'none';
+            cardFormView.style.display = 'block';
+            changeCardBtn.style.display = 'none';
+        });
+    
         applyTranslations();
     }
 
+    // --- REFACTORED initOrderConfirmationPage FUNCTION ---
     function initOrderConfirmationPage() {
         const lastOrder = JSON.parse(sessionStorage.getItem('lastOrder'));
         if (!lastOrder) {
             window.location.href = 'index.html';
             return;
         }
-        
+
         const restaurant = allRestaurants.find(r => r.id === lastOrder.restaurantId);
+
+        // Main confirmation text
         document.getElementById('confirmation-subtitle').textContent = `${translations.confirmSubtitleText || 'Your order from'} ${restaurant.name} ${translations.confirmOnItsWay || 'is on its way.'}`;
         document.getElementById('confirmation-eta').innerHTML = `<strong data-lang-key="confirmETA"></strong> ${restaurant.delivery_time || '25-35 minutes'}`;
+
+        // New details box
+        document.getElementById('confirmation-restaurant-name').textContent = `Order from ${restaurant.name}`;
         
+        // Itemized list with instructions
+        const itemsListContainer = document.getElementById('confirmation-items-list');
+        itemsListContainer.innerHTML = lastOrder.items.map(item => `
+            <div class="confirmation-item">
+                <p class="item-line"><span>${item.quantity} x</span> ${item.name}</p>
+                ${item.instructions ? `<p class="item-instructions"><em>"${item.instructions}"</em></p>` : ''}
+            </div>
+        `).join('');
+
+        document.getElementById('confirmation-date').textContent = lastOrder.orderDate;
+        document.getElementById('confirmation-name').textContent = lastOrder.deliveryAddress.fullName;
+        document.getElementById('confirmation-address').textContent = `${lastOrder.deliveryAddress.street}, ${restaurant.city}`;
+
+        let paymentMethodText = '';
+        switch (lastOrder.paymentInfo.method) {
+            case 'cash': paymentMethodText = 'Cash on Delivery'; break;
+            case 'card': paymentMethodText = `Credit/Debit Card (${lastOrder.paymentInfo.details.cardNumber})`; break;
+            case 'qr': paymentMethodText = 'Bank Transfer (QR)'; break;
+        }
+        document.getElementById('confirmation-payment').textContent = paymentMethodText;
+        document.getElementById('confirmation-total').textContent = `₫${lastOrder.total.toLocaleString('de-DE')}`;
+
+        // Clear the temporary order details
+        sessionStorage.removeItem('lastOrder');
         applyTranslations();
     }
 
@@ -696,12 +914,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const filterHTML = `
             <div class="filter-group">
-                <h4 data-lang-key="filterPrice">Price Range</h4>
-                <div class="filter-option"><label><input type="radio" name="price" value="all" checked> <span data-lang-key="filterAll">All</span></label></div>
+                <h4 data-lang-key="filterPrice"></h4>
+                <div class="filter-option"><label><input type="radio" name="price" value="all" checked> <span data-lang-key="filterAll"></span></label></div>
                 ${priceRangeHTML}
             </div>
             <div class="filter-group">
-                <h4 data-lang-key="filterCuisine">Cuisine</h4>
+                <h4 data-lang-key="filterCuisine"></h4>
                 ${cuisineHTML}
             </div>`;
         
@@ -714,9 +932,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const container = document.getElementById('cuisine-bubbles-container');
         if (!container) return;
         const popularCuisines = [
-            { name: "Rice Dishes", img: "images/rice.jpg" }, { name: "Noodles", img: "images/noodles.jpg" },
+            { name: "Rice Dishes", img: "images/suon.jpg" }, { name: "Noodles", img: "images/pho.jpg" },
             { name: "Fried Chicken", img: "images/chicken.jpg" }, { name: "Bubble Tea", img: "images/trasua.jpg" },
-            { name: "Grill", img: "images/grilled.jpg" }, { name: "Tom Yum", img: "images/tomyum.jpg" }
+            { name: "Grill", img: "images/grilled.jpg" }, { name: "Pizza", img: "images/pizza.jpg" }
         ];
         container.innerHTML = popularCuisines.map(c => `
             <div class="cuisine-bubble" data-cuisine="${c.name}">
@@ -728,9 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const bubble = e.target.closest('.cuisine-bubble');
             if(bubble) {
                 const cuisine = bubble.dataset.cuisine;
-                // Uncheck all other cuisine boxes
                 document.querySelectorAll('input[name="cuisine"]').forEach(c => c.checked = false);
-                // Check the one that was clicked
                 const checkbox = document.querySelector(`input[name="cuisine"][value="${cuisine}"]`);
                 if(checkbox) checkbox.checked = true;
                 handleFilterChange();
@@ -740,13 +956,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleFilterChange() {
         const searchTerm = document.getElementById('search-input-main').value.toLowerCase();
-        
         const selectedPrice = document.querySelector('input[name="price"]:checked').value;
-        
         const selectedCuisines = [...document.querySelectorAll('input[name="cuisine"]:checked')].map(el => el.value);
 
         const filtered = allRestaurants.filter(r => {
-            const matchesSearch = r.name.toLowerCase().includes(searchTerm) || r.cuisine.toLowerCase().includes(searchTerm);
+            const matchesSearch = r.name.toLowerCase().includes(searchTerm) || r.cuisine.toLowerCase().includes(searchTerm) || (r.menu ? Object.values(r.menu).flat().some(item => item.name.toLowerCase().includes(searchTerm)) : false);
             const matchesPrice = selectedPrice === 'all' || r.price_range === selectedPrice;
             const matchesCuisine = selectedCuisines.length === 0 || selectedCuisines.includes(r.cuisine);
             return matchesSearch && matchesPrice && matchesCuisine;
@@ -755,7 +969,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- MODIFIED LINE ---
         // Hide/show cuisine bubbles using visibility to preserve layout space and prevent shrinking/shifting.
         document.getElementById('cuisine-section').style.visibility = selectedCuisines.length > 0 ? 'hidden' : 'visible';
-
+        
         renderRestaurants(filtered);
     }
 
@@ -819,14 +1033,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- COMMON EVENT LISTENERS ---
     function setupCommonEventListeners() {
-        // Mobile Nav
         const mobileNavToggle = document.getElementById('mobile-nav-toggle');
         const mainNav = document.getElementById('main-nav');
         if (mobileNavToggle && mainNav) {
             mobileNavToggle.addEventListener('click', () => mainNav.classList.toggle('mobile-active'));
         }
 
-        // Language Switcher
         const langSwitcher = document.getElementById('language-switcher');
         if (langSwitcher) {
             langSwitcher.addEventListener('click', (e) => {
@@ -841,8 +1053,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (lang !== currentLang) {
                     currentLang = lang;
                     localStorage.setItem('language', lang);
-                    loadTranslations(lang);
-                    window.location.reload(); // <-- CHANGE THIS LINE
+                    loadTranslations(lang).then(() => window.location.reload());
                 }
             });
         });
@@ -852,7 +1063,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Homepage Search Form
         const homeSearchForm = document.getElementById('search-form');
         if (homeSearchForm) {
             homeSearchForm.addEventListener('submit', (e) => {
@@ -862,7 +1072,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // City Card Navigation
         const cityGrid = document.getElementById('cities-grid');
         if(cityGrid) {
             cityGrid.addEventListener('click', (e) => {
@@ -871,16 +1080,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Mobile Filter Modal Buttons
         const openBtn = document.getElementById('open-filters-modal-btn');
-        const filterModalCloseBtn = document.getElementById('close-filters-modal-btn'); // <-- RENAMED VARIABLE
+        const filterModalCloseBtn = document.getElementById('close-filters-modal-btn');
         const applyBtn = document.getElementById('apply-filters-btn');
         const modal = document.getElementById('filter-modal');
         if(openBtn && modal) openBtn.addEventListener('click', () => modal.classList.add('show'));
-        if(filterModalCloseBtn && modal) filterModalCloseBtn.addEventListener('click', () => modal.classList.remove('show')); // <-- UPDATED USAGE
+        if(filterModalCloseBtn && modal) filterModalCloseBtn.addEventListener('click', () => modal.classList.remove('show'));
         if(applyBtn && modal) {
             applyBtn.addEventListener('click', () => {
-                // Sync filters from modal to main page and apply
                 const modalFilters = document.getElementById('modal-body-filters');
                 const sidebarFilters = document.getElementById('filters-sidebar');
                 modalFilters.querySelectorAll('input').forEach(modalInput => {
@@ -892,11 +1099,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Item Modal Close Button
         const modalOverlay = document.getElementById('item-modal-overlay');
-        const itemModalCloseBtn = document.getElementById('modal-close-btn'); // <-- RENAMED VARIABLE
+        const itemModalCloseBtn = document.getElementById('modal-close-btn');
         if (modalOverlay && itemModalCloseBtn) {
-            itemModalCloseBtn.addEventListener('click', () => { // <-- UPDATED USAGE
+            itemModalCloseBtn.addEventListener('click', () => {
                 modalOverlay.classList.remove('show');
             });
         }
