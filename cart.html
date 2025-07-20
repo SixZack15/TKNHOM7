@@ -14,20 +14,19 @@
     <!-- Header Section -->
     <header class="header">
         <div class="container header-container">
-            <a href="index.html" class="logo">
-                <img src="images/Icon.png" alt="Mr. Lexx Logo">
-                <span>Mr. Lexx</span>
-            </a>
+            <a href="index.html" class="logo"><img src="images/Icon.png" alt="Mr. Lexx Logo"><span>Mr. Lexx</span></a>
             <nav class="main-nav" id="main-nav">
-                <a href="login.html" class="nav-link" data-lang-key="login">Log in</a>
-                <a href="signup.html" class="btn btn-primary" data-lang-key="signup">Sign up</a>
-                <div class="language-switcher">
-                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
-                    <ul class="language-dropdown">
-                        <li><a href="#" data-lang="EN">English</a></li>
-                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                <!-- Auth links dynamically injected -->
+                <div class="language-switcher" id="language-switcher">
+                    <button class="language-switcher-button">
+                        <span id="current-lang-text">EN</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="language-dropdown" id="language-dropdown">
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="vi">Tiếng Việt</a></li>
                     </ul>
                 </div>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
             </nav>
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
         </div>
@@ -35,11 +34,9 @@
 
     <!-- Main Content -->
     <main class="page-wrapper">
-        <div class="empty-cart-container">
-            <i class="fas fa-shopping-bag empty-cart-icon"></i>
-            <h2 data-lang-key="cartEmptyTitle">Your cart is empty</h2>
-            <p data-lang-key="cartEmptySubtitle">Looks like you haven't added anything to your cart yet.</p>
-            <a href="city.html" class="btn btn-primary" data-lang-key="cartEmptyBtn">Browse restaurants</a>
+        <div id="cart-container">
+            <!-- This container will be populated by script.js -->
+            <!-- It will show either the empty cart message or the order summary -->
         </div>
     </main>
 

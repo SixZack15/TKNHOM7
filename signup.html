@@ -19,15 +19,17 @@
                 <span>Mr. Lexx</span>
             </a>
             <nav class="main-nav" id="main-nav">
-                <a href="login.html" class="nav-link" data-lang-key="login">Log in</a>
-                <div class="language-switcher">
-                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
-                    <ul class="language-dropdown">
-                        <li><a href="#" data-lang="EN">English</a></li>
-                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                <!-- Auth links are now dynamically injected by script.js -->
+                <div class="language-switcher" id="language-switcher">
+                     <button class="language-switcher-button">
+                        <span id="current-lang-text">EN</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="language-dropdown" id="language-dropdown">
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="vi">Tiếng Việt</a></li>
                     </ul>
                 </div>
-                <a href="#" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i></a>
             </nav>
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
         </div>
@@ -55,10 +57,10 @@
             <div class="divider-or" data-lang-key="orDivider">or</div>
             <div class="social-login">
                 <button class="social-login-btn google">
-                    <i class="fab fa-google"></i> <span data-lang-key="loginWithGoogle">Continue with Google</span>
+                    <i class="fab fa-google"></i> <span data-lang-key="continueWithGoogle">Continue with Google</span>
                 </button>
                 <button class="social-login-btn facebook">
-                    <i class="fab fa-facebook-f"></i> <span data-lang-key="loginWithFacebook">Continue with Facebook</span>
+                    <i class="fab fa-facebook-f"></i> <span data-lang-key="continueWithFacebook">Continue with Facebook</span>
                 </button>
             </div>
             <p class="auth-switch-link">

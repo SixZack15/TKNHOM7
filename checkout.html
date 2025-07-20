@@ -6,7 +6,7 @@
     <title>Checkout - Mr. Lexx</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -36,12 +36,12 @@
                 <div class="checkout-section">
                     <h3 data-lang-key="paymentTitle">Payment method</h3>
                     <div class="payment-options">
-                        <label class="payment-option active" data-payment-method="cash">
+                        <label class="payment-option active" id="cash-option">
                             <input type="radio" name="payment" value="cash" checked>
                             <i class="fas fa-money-bill-wave"></i>
                             <span data-lang-key="paymentCash">Cash on delivery</span>
                         </label>
-                         <label class="payment-option" data-payment-method="card">
+                         <label class="payment-option" id="card-option">
                             <input type="radio" name="payment" value="card">
                             <i class="fas fa-credit-card"></i>
                             <span data-lang-key="paymentCard">Credit/Debit Card</span>
@@ -68,28 +68,8 @@
             </div>
 
             <!-- Order Summary -->
-            <aside class="order-summary">
-                <h3 data-lang-key="orderSummaryTitle">Order Summary</h3>
-                <div class="cart-item-readonly">
-                    <span>1 x</span>
-                    <p>Phở Tái Nạm</p>
-                    <span>₫65,000</span>
-                </div>
-                <div class="summary-details">
-                    <div class="summary-line">
-                        <span data-lang-key="subtotal">Subtotal</span>
-                        <span>₫65,000</span>
-                    </div>
-                    <div class="summary-line">
-                        <span data-lang-key="deliveryFee">Delivery fee</span>
-                        <span>₫15,000</span>
-                    </div>
-                    <div class="summary-line total-line">
-                        <span data-lang-key="total">Total</span>
-                        <span class="total-price">₫80,000</span>
-                    </div>
-                </div>
-                <button class="btn btn-primary checkout-btn" id="place-order-btn" data-lang-key="placeOrderBtn">Place Order</button>
+            <aside class="order-summary" id="checkout-order-summary">
+                <!-- Checkout summary will be populated by JS -->
             </aside>
         </div>
     </main>

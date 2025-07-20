@@ -17,21 +17,22 @@
     <!-- Header Section -->
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <img src="images/Icon.png" alt="Mr. Lexx Logo">
                 <span>Mr. Lexx</span>
             </a>
             <nav class="main-nav" id="main-nav">
-                <a href="#" class="nav-link" data-lang-key="login">Log in</a>
-                <a href="#" class="btn btn-primary" data-lang-key="signup">Sign up for free delivery</a>
-                <div class="language-switcher">
-                    <span id="current-lang">EN <i class="fas fa-chevron-down"></i></span>
-                    <ul class="language-dropdown">
-                        <li><a href="#" data-lang="EN">English</a></li>
-                        <li><a href="#" data-lang="VI">Tiếng Việt</a></li>
+                <!-- Auth links will be dynamically added by script.js -->
+                <div class="language-switcher" id="language-switcher">
+                    <button class="language-switcher-button">
+                        <span id="current-lang-text">EN</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="language-dropdown" id="language-dropdown">
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="vi">Tiếng Việt</a></li>
                     </ul>
                 </div>
-                <a href="#" class="cart-icon">
+                <a href="cart.html" class="cart-icon">
                     <i class="fas fa-shopping-bag"></i>
                 </a>
             </nav>
@@ -49,14 +50,14 @@
                 <h1 data-lang-key="heroTitle">Sign up for free delivery on your first order</h1>
                 <form class="search-form" id="search-form">
                     <div class="search-bar">
-                        <input type="text" id="address-input" placeholder="Enter your address" required>
+                        <input type="text" id="address-input" data-lang-key-placeholder="addressPlaceholder" placeholder="Enter your address" required>
                         <button type="button" class="locate-me" id="locate-me-btn">
                             <i class="fas fa-location-arrow"></i> <span data-lang-key="locateMe">Locate me</span>
                         </button>
                         <button type="submit" class="btn btn-find" data-lang-key="findFood">Find food</button>
                     </div>
                 </form>
-                <p class="sub-link"><a href="#" data-lang-key="loginToSee">Log in to see saved addresses</a></p>
+                <p class="sub-link" id="login-sublink"><a href="login.html" data-lang-key="loginToSee">Log in to see saved addresses</a></p>
             </div>
         </section>
 
@@ -65,102 +66,9 @@
             <div class="container">
                 <div class="section-header">
                     <h2 data-lang-key="dailyDeals">Daily deals on Mr. Lexx</h2>
-                    <div class="scroll-buttons">
-                        <button class="scroll-arrow" id="scroll-left" aria-label="Scroll left"><i class="fas fa-arrow-left"></i></button>
-                        <button class="scroll-arrow" id="scroll-right" aria-label="Scroll right"><i class="fas fa-arrow-right"></i></button>
-                    </div>
                 </div>
                 <div class="deals-container" id="deals-container">
-                    <!-- Deal Card 1 -->
-                    <div class="deal-card">
-                        <div class="card-image">
-                            <img src="images/pho.jpg" alt="Pho Bo Ha Noi">
-                            <span class="discount-tag">15% OFF</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Phở Bò Hà Nội</h3>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.9 (500+)
-                            </div>
-                            <p class="card-cuisine">Noodles</p>
-                            <div class="card-info">
-                                <span><i class="fas fa-clock"></i> 25-35 min</span>
-                                <span><i class="fas fa-tag"></i> ₫55,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Deal Card 2 -->
-                    <div class="deal-card">
-                        <div class="card-image">
-                            <img src="images/suon.jpg" alt="Com Tam Suon Bi Cha">
-                            <span class="discount-tag">FREE SHIP</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Cơm Tấm Sườn Bì Chả</h3>
-                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.8 (1000+)
-                            </div>
-                            <p class="card-cuisine">Rice Dishes</p>
-                            <div class="card-info">
-                                <span><i class="fas fa-clock"></i> 20-30 min</span>
-                                <span><i class="fas fa-tag"></i> ₫70,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Deal Card 3 -->
-                    <div class="deal-card">
-                        <div class="card-image">
-                            <img src="images/chicken.jpg" alt="Fried Chicken">
-                            <span class="discount-tag">20% OFF</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Gà Rán Giòn Tan</h3>
-                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.7 (800+)
-                            </div>
-                            <p class="card-cuisine">Fried Chicken</p>
-                            <div class="card-info">
-                                <span><i class="fas fa-clock"></i> 15-25 min</span>
-                                <span><i class="fas fa-tag"></i> ₫99,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Deal Card 4 -->
-                    <div class="deal-card">
-                        <div class="card-image">
-                            <img src="images/trasua.jpg" alt="Bubble Tea">
-                            <span class="discount-tag">BUY 1 GET 1</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Trà Sữa Trân Châu</h3>
-                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.9 (2k+)
-                            </div>
-                            <p class="card-cuisine">Bubble Tea</p>
-                            <div class="card-info">
-                                <span><i class="fas fa-clock"></i> 10-20 min</span>
-                                <span><i class="fas fa-tag"></i> ₫45,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Deal Card 5 -->
-                     <div class="deal-card">
-                        <div class="card-image">
-                            <img src="images/tomyum.jpg" alt="Tom Yum Soup">
-                            <span class="discount-tag">10% OFF</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Canh Tom Yum Hải Sản</h3>
-                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.8 (300+)
-                            </div>
-                            <p class="card-cuisine">Tom Yum</p>
-                            <div class="card-info">
-                                <span><i class="fas fa-clock"></i> 30-40 min</span>
-                                <span><i class="fas fa-tag"></i> ₫120,000</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Deal cards will be dynamically injected here -->
                 </div>
             </div>
         </section>
@@ -169,20 +77,20 @@
         <section class="cities">
             <div class="container">
                 <h2 class="section-title" data-lang-key="findUs">Find us in these cities and many more!</h2>
-                <div class="cities-grid">
-                    <div class="city-card">
+                <div class="cities-grid" id="cities-grid">
+                     <div class="city-card" data-city="Ho Chi Minh City">
                         <img src="images/hochiminh.jpg" alt="Ho Chi Minh City">
                         <span class="city-name">Ho Chi Minh City</span>
                     </div>
-                    <div class="city-card">
+                    <div class="city-card" data-city="Ha Noi">
                         <img src="images/hanoi.jpg" alt="Ha Noi">
                         <span class="city-name">Ha Noi</span>
                     </div>
-                    <div class="city-card">
+                    <div class="city-card" data-city="Da Nang">
                         <img src="images/danang.jpg" alt="Da Nang">
                         <span class="city-name">Da Nang</span>
                     </div>
-                    <div class="city-card">
+                    <div class="city-card" data-city="Nha Trang">
                         <img src="images/nhatrang.jpg" alt="Nha Trang">
                         <span class="city-name">Nha Trang</span>
                     </div>
