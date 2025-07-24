@@ -296,16 +296,16 @@ main {
 }
 @media (max-width: 768px) {
     .mobile-nav-toggle { display: block; }
-    .main-nav { display: none; position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100vh; background-color: var(--white-color); flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; padding: 80px 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: transform 0.3s ease-in-out; transform: translateX(100%); z-index: 1001; }
+    .main-nav { display: none; position: fixed; top: 0; right: 0; width: 80%; max-width: 200px; height: 100vh; background-color: var(--white-color); flex-direction: column; justify-content: flex-start; align-items: center; gap: 20px; padding: 80px 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: transform 0.3s ease-in-out; transform: translateX(100%); z-index: 1001; }
     .main-nav.mobile-active { display: flex; transform: translateX(0); }
-    .main-nav .btn { width: 100%; text-align: center; }
+    .main-nav .btn { text-align: center; }
     .header-left .location-display { display: none; }
     .hero { height: auto; padding: 80px 20px; }
     .hero h1 { font-size: 32px; }
     .hero .search-bar { flex-direction: column; gap: 10px; background: none; box-shadow: none; padding: 0; }
     .hero .search-bar > * { border-radius: 8px !important; }
     .hero #address-input { background: var(--white-color); padding: 15px; text-align: center; }
-    .hero .locate-me { background: var(--white-color); justify-content: center; border: 1px solid var(--border-color); }
+    .hero .locate-me { background: var(--white-color); justify-content: center; border: 1px solid var(--border-color); margin-right: 0px; }
     .section-header h2, .section-title { font-size: 28px; }
     .footer-container { flex-direction: column; gap: 20px; }
     .deals-container, .restaurant-grid { grid-template-columns: 1fr; }
@@ -354,7 +354,7 @@ main {
 
 /* --- ORDER CONFIRMATION PAGE REFINEMENTS --- */
 .order-confirmation-container .btn {
-    margin-top: 30px;
+    margin-top: 0;
 }
 
 .confirmation-details-box {
@@ -645,3 +645,74 @@ main {
         font-size: 28px;
     }
 }
+
+/* Add to style.css */
+.cart-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-page-header h3 {
+    margin-bottom: 0;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #c40041; /* Darker shade of primary color */
+}
+
+/* Add to style.css */
+
+/* New general-purpose class for centering buttons */
+.centered-button-container {
+    text-align: center;
+}
+
+.centered-button-container-order-com {
+    display: flex;
+    justify-content: center;
+    /* Move the margin from the button to its container for better control */
+    margin-top: 30px;
+}
+
+/* Override for the checkout button specifically on the cart page summary */
+.order-summary .checkout-btn {
+    width: auto; /* Override the default width: 100% */
+    min-width: 250px; /* Ensure the button has a good size */
+}
+
+/* Add this to style.css */
+
+/* Aligns the Order Summary card on the checkout page for desktop views */
+@media (min-width: 769px) { /* This targets tablets and desktops */
+    #checkout-order-summary {
+        margin-top: 116px; /* Pushes the card down to align with the "Delivery Address" card */
+    }
+}
+
+/* Add this to style.css */
+
+/* Aligns the label to the top when the description value wraps to a new line */
+.transfer-details .detail-item {
+    align-items: flex-start;
+}
+
+/* Specifically targets the Transfer Description value */
+#qr-reference {
+    text-align: right; /* Keeps the value aligned to the right */
+    word-break: break-all; /* Forces the long, unbroken string to wrap */
+    max-width: 65%; /* Prevents the text from taking up too much horizontal space */
+}
+

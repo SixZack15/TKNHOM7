@@ -706,8 +706,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const restaurant = allRestaurants.find(r => r.id === cart[0].restaurantId);
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+        // --- START: Replace this entire block ---
         summaryContainer.innerHTML = `
-            <h3 data-lang-key="orderSummaryTitle"></h3>
+            <div class="cart-page-header">
+                <h3 data-lang-key="orderSummaryTitle"></h3>
+                <a href="menu.html?id=${restaurant.id}" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Menu
+                </a>
+            </div>
             <p style="font-weight: 600; margin-bottom: 20px;">${restaurant.name}</p>
             <div id="cart-items-list">
                 ${cart.map(item => `
@@ -739,7 +745,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span>₫${subtotal.toLocaleString('de-DE')}</span>
                 </div>
             </div>
-            <a href="checkout.html" class="btn btn-primary checkout-btn" data-lang-key="checkoutBtn"></a>`;
+
+            <!-- START: This is the new wrapper div -->
+            <div class="centered-button-container">
+                <a href="checkout.html" class="btn btn-primary checkout-btn" data-lang-key="checkoutBtn"></a>
+            </div>
+            <!-- END: This is the new wrapper div -->
+            `;
+        // --- END: Replacement block ---
 
         // Re-attach event listeners for the newly created buttons
         document.getElementById('cart-items-list').addEventListener('click', e => {
@@ -789,7 +802,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="total-price">₫${total.toLocaleString('de-DE')}</span>
                 </div>
             </div>
-            <button class="btn btn-primary checkout-btn" id="place-order-btn" data-lang-key="placeOrderBtn"></button>`;
+            
+            <!-- START: Add this wrapper div -->
+            <div class="centered-button-container">
+                <button class="btn btn-primary checkout-btn" id="place-order-btn" data-lang-key="placeOrderBtn"></button>
+            </div>
+            <!-- END: Added wrapper div -->
+            `;
         
         document.getElementById('place-order-btn').addEventListener('click', placeOrder);
     
