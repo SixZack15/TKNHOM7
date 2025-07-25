@@ -1050,6 +1050,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const forgotPasswordForm = document.getElementById('forgot-password-form');
+    if (forgotPasswordForm) {
+        forgotPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            const authFormBox = document.querySelector('.auth-form-box');
+
+            if (!email) {
+                alert(translations.alertEnterEmail || 'Please enter your email.');
+                return;
+            }
+
+            // Replace the form with a confirmation message
+            authFormBox.innerHTML = `
+                <i class="fas fa-check-circle" style="font-size: 48px; color: #4CAF50; margin-bottom: 20px;"></i>
+                <h2 class="auth-title" data-lang-key="resetEmailSentTitle">Password Reset Email Sent</h2>
+                <p class="auth-subtitle" data-lang-key="resetEmailSentText">We've sent a password reset link to [email]. Please check your inbox.</p>
+                <a href="login.html" class="btn btn-primary auth-btn" data-lang-key="logInLink">Log in</a>
+            `;
+            
+            // Apply the base translations from the JSON files
+            applyTranslations();
+            
+            // Inject the user's email into the translated text
+            const subtitleElement = authFormBox.querySelector('[data-lang-key="resetEmailSentText"]');
+            if (subtitleElement && subtitleElement.textContent.includes('[email]')) {
+                subtitleElement.textContent = subtitleElement.textContent.replace('[email]', email);
+            }
+        });
+    }
+
     // --- COMMON EVENT LISTENERS ---
     function setupCommonEventListeners() {
         const mobileNavToggle = document.getElementById('mobile-nav-toggle');

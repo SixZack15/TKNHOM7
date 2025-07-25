@@ -105,5 +105,8 @@
     "valueCommunityText": "We are dedicated to helping our local restaurant partners thrive and grow.",
     "ctaTitle": "Join the Mr. Lexx Family",
     "ctaText": "Are you a restaurant owner or a driver? Partner with us to reach more customers and grow your business.",
-    "ctaBtn": "Become a Partner"
+    "ctaBtn": "Become a Partner",
+    "alertEnterEmail": "Please enter your email.",
+    "resetEmailSentTitle": "Password Reset Email Sent",
+    "resetEmailSentText": "We've sent a password reset link to [email]. Please check your inbox."
 }

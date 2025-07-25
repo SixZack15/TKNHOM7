@@ -105,5 +105,8 @@
     "valueCommunityText": "Chúng tôi tận tâm giúp đỡ các đối tác nhà hàng địa phương của mình phát triển và lớn mạnh.",
     "ctaTitle": "Gia nhập Gia đình Mr. Lexx",
     "ctaText": "Bạn là chủ nhà hàng hay tài xế? Hãy hợp tác với chúng tôi để tiếp cận nhiều khách hàng hơn và phát triển doanh nghiệp của bạn.",
-    "ctaBtn": "Trở thành Đối tác"
+    "ctaBtn": "Trở thành Đối tác",
+    "alertEnterEmail": "Vui lòng nhập email của bạn.",
+    "resetEmailSentTitle": "Đã Gửi Email Đặt Lại Mật Khẩu",
+    "resetEmailSentText": "Chúng tôi đã gửi một liên kết đặt lại mật khẩu đến [email]. Vui lòng kiểm tra hộp thư của bạn."
 }
